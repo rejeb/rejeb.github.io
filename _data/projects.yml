@@ -38,8 +38,8 @@
     SELECT user_id, country
     FROM ${ref("raw_users")}
     -- folds to: my-project.raw.raw_users
-- slug: thermalright-lcd-control
-  dir: thermalright-lcd-control
+- slug: linux-thermalright-lcd-control
+  dir: linux-thermalright-lcd-control
   name: Thermalright LCD Control For Linux
   short: TR
   color: "#e11d48"
@@ -51,8 +51,8 @@
   category: UtilitiesApplication
   os: Linux (Fedora, Debian, Ubuntu)
   language: Python
-  image: /assets/img/og/og-thermalright-lcd-control.png
-  url: /thermalright-lcd-control
+  image: /assets/img/og/og-linux-thermalright-lcd-control.png
+  url: /linux-thermalright-lcd-control
   repo: https://github.com/rejeb/thermalright-lcd-control
   screenshots:
     - src: /assets/img/tr-device-configuration.webp
