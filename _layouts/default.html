@@ -1,13 +1,19 @@
 <!doctype html>
+{%- comment -%} Build timestamp appended to asset URLs so each deploy bypasses browser caches. {%- endcomment -%}
+{%- assign v = site.time | date: "%s" -%}
 <html lang="en" data-palette="wargames">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}?v={{ v }}" sizes="any">
+  <link rel="icon" href="{{ '/favicon.svg' | relative_url }}?v={{ v }}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}?v={{ v }}">
+  <meta name="theme-color" content="#00040c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ v }}">
 </head>
 <body class="{% if page.layout == 'home' %}home{% elsif page.layout == 'project' %}project-page{% else %}reading{% endif %}">
   <a class="skip" href="#content">Skip to content</a>
@@ -30,6 +36,6 @@
     <div class="viewer-bar"><span class="shot-cap" id="viewer-title"></span><button class="viewer-close" data-close aria-label="Close">[ ESC ] CLOSE</button></div>
     <div class="hud"><img id="viewer-img" alt=""></div>
   </dialog>
-  <script src="{{ '/assets/site.js' | relative_url }}"></script>
+  <script src="{{ '/assets/site.js' | relative_url }}?v={{ v }}"></script>
 </body>
 </html>
