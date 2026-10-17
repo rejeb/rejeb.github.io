@@ -3,11 +3,13 @@ description: Open-source projects by rbenrejeb.
 url: https://rejeb.github.io
 github_username: rejeb
 
+webmaster_verifications:
+  google: dkF4ZAmTy2y-6PvncGbYpjDBneDUybR6GmGQbCnapXU
+
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-redirect-from
   - jekyll-sitemap
 
 header_pages:

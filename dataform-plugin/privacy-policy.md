@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Privacy Policy
-permalink: /dataform-plugin/privacy-policy/
+permalink: /dataform-plugin/privacy-policy
 ---
 
 *Effective date: October 17, 2026*

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Dataform Plugin for IntelliJ
-permalink: /dataform-plugin/
+permalink: /dataform-plugin
 ---
 
 **Dataform Plugin for IntelliJ** brings full language support for
@@ -23,7 +23,7 @@ The plugin uses your Google account only to work with Google Cloud on your behal
 with your Dataform repositories and workspaces (browse, create, push and pull files), to run
 Dataform workflow actions, and to execute queries in BigQuery. Your credentials stay on your
 computer, in the IDE password store, and the plugin never sends your data to its developer or
-to any third party. See the [Privacy Policy]({{ '/dataform-plugin/privacy-policy/' | relative_url }}) for details.
+to any third party. See the [Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relative_url }}) for details.
 
 ## Features
 
@@ -80,8 +80,8 @@ Requirements: IntelliJ IDEA 2026.1 or later and Node.js.
 Report bugs and request features on the
 [GitHub issue tracker](https://github.com/rejeb/google-cloud-dataform-plugin/issues).
 
-[Privacy Policy]({{ '/dataform-plugin/privacy-policy/' | relative_url }}) ·
-[Terms of Service]({{ '/dataform-plugin/terms-of-service/' | relative_url }})
+[Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relative_url }}) ·
+[Terms of Service]({{ '/dataform-plugin/terms-of-service' | relative_url }})
 
 *Dataform Plugin for IntelliJ is an independent open-source project, not affiliated with or
 endorsed by Google or JetBrains.*
