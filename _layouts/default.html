@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-palette="wargames">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+</head>
+<body class="{% if page.layout == 'home' %}home{% elsif page.layout == 'project' %}project-page{% else %}reading{% endif %}">
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="crt" aria-hidden="true"></div>
+  <header class="top">
+    <a class="brand" href="{{ '/' | relative_url }}">RBR-OS</a>
+    <nav>
+      <a href="{{ '/' | relative_url }}" data-key="h">[H]OME</a>
+      <a href="{{ site.github_url }}" data-key="g">[G]ITHUB</a>
+    </nav>
+  </header>
+  <main id="content">
+    {{ content }}
+  </main>
+  <footer class="bottom">
+    <span>RBR-OS v2026.10 · {{ site.data.projects | size }} PROGRAMS INSTALLED · APACHE-2.0</span>
+    <span>KEYS: [1-{{ site.data.projects | size }}] OPEN · [H] HOME · [ESC] BACK</span>
+  </footer>
+  <dialog class="viewer" id="viewer">
+    <div class="viewer-bar"><span class="shot-cap" id="viewer-title"></span><button class="viewer-close" data-close aria-label="Close">[ ESC ] CLOSE</button></div>
+    <div class="hud"><img id="viewer-img" alt=""></div>
+  </dialog>
+  <script src="{{ '/assets/site.js' | relative_url }}"></script>
+</body>
+</html>

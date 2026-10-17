@@ -1,21 +1,14 @@
 ---
-layout: page
+layout: project
+project: dataform-plugin
 title: Dataform Plugin for IntelliJ
 permalink: /dataform-plugin
 ---
 
-**Dataform Plugin for IntelliJ** brings full language support for
-[Google Cloud Dataform](https://cloud.google.com/dataform) projects to IntelliJ IDEA,
-so you can write, navigate, run and debug SQLX pipelines without leaving the IDE.
+## Independent project
 
-<div id="marketplace-widget"></div>
-<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
-<script>
-  MarketplaceWidget.setupMarketplaceWidget('install', 30020, "#marketplace-widget");
-</script>
-
-[View the plugin on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/30020) ·
-[Source code on GitHub](https://github.com/rejeb/google-cloud-dataform-plugin)
+Dataform Plugin for IntelliJ is an independent open-source project, not affiliated with or
+endorsed by Google or JetBrains.
 
 ## Why the plugin asks you to sign in with Google
 
@@ -82,6 +75,3 @@ Report bugs and request features on the
 
 [Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relative_url }}) ·
 [Terms of Service]({{ '/dataform-plugin/terms-of-service' | relative_url }})
-
-*Dataform Plugin for IntelliJ is an independent open-source project, not affiliated with or
-endorsed by Google or JetBrains.*

@@ -1,18 +1,16 @@
 title: rejeb.is-a.dev
-description: Open-source projects by rbenrejeb.
+description: Open-source tools for data engineers and Linux tinkerers.
+author: rbenrejeb
 url: https://rejeb.is-a.dev
-github_username: rejeb
+github_url: https://github.com/rejeb
 
-theme: minima
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
 
-header_pages:
-  - dataform-plugin/index.md
-  - dataform-plugin/privacy-policy.md
-  - dataform-plugin/terms-of-service.md
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
 
 exclude:
   - README.md

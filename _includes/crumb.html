@@ -1,0 +1,1 @@
+{% assign segs = page.url | split: '/' %}{% assign acc = '' %}C:\<a href="{{ '/' | relative_url }}">RBR</a>{% for s in segs %}{% if s != '' %}{% assign acc = acc | append: '/' | append: s %}\<a href="{{ acc | relative_url }}">{{ s | upcase }}</a>{% endif %}{% endfor %}&gt; TYPE README.TXT

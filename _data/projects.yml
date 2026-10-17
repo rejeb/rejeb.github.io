@@ -1,0 +1,87 @@
+- slug: dataform-plugin
+  dir: dataform-intellij-plugin
+  name: Dataform Plugin for IntelliJ
+  short: DF
+  color: "#6366f1"
+  tagline: Write, navigate, run and debug Dataform SQLX pipelines without leaving IntelliJ IDEA.
+  kind: IntelliJ plugin
+  tags: [java, intellij, bigquery, gcp]
+  version: v0.2.16
+  license: Apache-2.0
+  url: /dataform-plugin
+  repo: https://github.com/rejeb/google-cloud-dataform-plugin
+  extra:
+    - label: JetBrains Marketplace
+      url: https://plugins.jetbrains.com/plugin/30020
+  screenshots:
+    - src: /assets/img/df-shot1.webp
+      caption: Project lineage graph
+    - src: /assets/img/df-shot3.webp
+      caption: SQLX editor with the file lineage preview
+    - src: /assets/img/df-shot5.webp
+      caption: Compiled query preview
+    - src: /assets/img/df-shot7.webp
+      caption: Workflow execution with BigQuery job details
+    - src: /assets/img/df-shot11.webp
+      caption: Dataform workflow run configuration
+  snippet_file: users.sqlx
+  snippet: |
+    config {
+      type: "table",
+      tags: ["daily"]
+    }
+
+    SELECT user_id, country
+    FROM ${ref("raw_users")}
+    -- folds to: my-project.raw.raw_users
+- slug: thermalright-lcd-control
+  dir: thermalright-lcd-control
+  name: Thermalright LCD Control
+  short: TR
+  color: "#e11d48"
+  tagline: Drive Thermalright cooler LCD screens and RGB LEDs on Linux, with themes, widgets and live hardware metrics.
+  kind: Linux desktop app
+  tags: [python, qt, linux, usb]
+  version: v2.1.1
+  license: Apache-2.0
+  url: /thermalright-lcd-control
+  repo: https://github.com/rejeb/thermalright-lcd-control
+  screenshots:
+    - src: /assets/img/tr-device-configuration.webp
+      caption: Device configuration
+    - src: /assets/img/tr-themes.webp
+      caption: Theme presets
+    - src: /assets/img/tr-wigdets.webp
+      caption: Widget editor
+    - src: /assets/img/tr-bg.webp
+      caption: Backgrounds
+    - src: /assets/img/tr-foreground.webp
+      caption: Foregrounds
+  snippet_file: terminal
+  snippet: |
+    $ sudo dnf install thermalright-lcd-control
+    $ thermalright-lcd-control
+    [ok] device 0402:3922 detected
+    [ok] widgets: cpu.temp gpu.usage clock
+- slug: netcdf-spark-parser
+  dir: netcdf-spark-parser
+  name: NetCDF Spark Parser
+  short: NC
+  color: "#0891b2"
+  tagline: A Spark DataSource V2 connector that reads NetCDF scientific files as DataFrames, at scale.
+  kind: Spark connector
+  tags: [scala, spark, netcdf, s3]
+  version: v1.0.0
+  license: Apache-2.0
+  url: /netcdf-spark-parser
+  repo: https://github.com/rejeb/netcdf-spark-parser
+  snippet_file: Main.scala
+  snippet: |
+    // build.sbt
+    // "io.github.rejeb" %% "netcdf-spark-parser" % "1.0.0"
+
+    val df = spark.read
+      .format("netcdf")
+      .schema(schema)
+      .option("path", "s3://climate/era5.nc")
+      .load()

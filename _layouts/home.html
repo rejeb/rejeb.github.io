@@ -1,0 +1,82 @@
+---
+layout: default
+---
+<section class="boot" data-boot>
+  <p>RBR-OS BIOS v2026.10 &nbsp;(C) RBENREJEB</p>
+  <p>MEMORY TEST ........ 640K OK</p>
+  <p>DETECTING PROGRAMS .. {{ site.data.projects | size }} FOUND</p>
+  <p>LOADING SHELL ....... OK</p>
+</section>
+
+<section class="screen" data-after-boot>
+<pre class="logo" aria-label="rbenrejeb">
+ ____  ____  _____ _   _ ____  _____    _ _____ ____
+|  _ \| __ )| ____| \ | |  _ \| ____|  | | ____| __ )
+| |_) |  _ \|  _| |  \| | |_) |  _| _  | |  _| |  _ \
+|  _ &lt;| |_) | |___| |\  |  _ &lt;| |__| |_| | |___| |_) |
+|_| \_\____/|_____|_| \_|_| \_\_____\___/|_____|____/
+</pre>
+  <p class="sub">&gt; OPEN-SOURCE TOOLS FOR DATA ENGINEERS AND LINUX TINKERERS<span class="cur">█</span></p>
+
+  <div class="row2">
+    <div class="panel">
+      <div class="panel-title">═══ WHOAMI ═══</div>
+      <p class="prompt"><span class="ps">C:\RBR&gt;</span> WHOAMI</p>
+      <p class="who">RBENREJEB</p>
+      <p class="bio">I build developer tools, data connectors and hardware hacks: an IDE plugin for data pipelines, a Spark connector for scientific data, and a Linux driver reverse-engineered from a Windows app. Everything here is open source.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-title">═══ SYSTEM INFO ═══</div>
+      <table class="sys">
+        <tr><td>OPERATOR</td><td>RBENREJEB</td></tr>
+        <tr><td>PROGRAMS</td><td>{{ site.data.projects | size }}</td></tr>
+        <tr><td>LANGUAGES</td><td>JAVA · PYTHON · SCALA</td></tr>
+        <tr><td>LICENSE</td><td>APACHE-2.0</td></tr>
+        <tr><td>REMOTE</td><td><a href="{{ site.github_url }}">GITHUB.COM/REJEB</a> (FETCH)</td></tr>
+        <tr><td>SUPPORT</td><td>OPEN AN ISSUE ON THE PROGRAM'S REPOSITORY</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" id="projects">
+    <div class="panel-title">═══ MAIN MENU ═══ SELECT A PROGRAM</div>
+    <p class="prompt"><span class="ps">C:\RBR&gt;</span> DIR /W PROGRAMS</p>
+    <p class="hint">▶ CLICK A PROGRAM <span class="keys-only">OR PRESS <kbd>1</kbd>–<kbd>{{ site.data.projects | size }}</kbd> · <kbd>H</kbd> HOME · <kbd>ESC</kbd> BACK</span></p>
+    <ol class="menu">
+      {% for p in site.data.projects %}
+      <li>
+        <a href="{{ p.url | relative_url }}" data-key="{{ forloop.index }}">
+          <span class="k">[{{ forloop.index }}]</span>
+          <span class="n">{{ p.name | upcase }}</span>
+          <span class="v">{{ p.version }}</span>
+        </a>
+        <p>{{ p.tagline }}</p>
+        <p class="t">{{ p.kind | upcase }} · {% for t in p.tags %}{{ t | upcase }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">═══ QUICKSTART ═══</div>
+    {% for p in site.data.projects %}
+    <div class="snip">
+      <p class="prompt"><span class="ps">C:\RBR\{{ p.dir | upcase }}&gt;</span> TYPE {{ p.snippet_file | upcase }}</p>
+      <pre><code>{{ p.snippet | escape }}</code></pre>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">═══ DOCUMENTS ═══</div>
+    <p class="prompt"><span class="ps">C:\RBR&gt;</span> TREE /DOCS</p>
+    <ul class="docs">
+      {% for p in site.data.projects %}
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.dir | upcase }}\README.TXT</a>
+        <span class="links"><a href="{{ p.repo }}">SOURCE</a>{% for e in p.extra %} · <a href="{{ e.url }}">{{ e.label | upcase }}</a>{% endfor %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

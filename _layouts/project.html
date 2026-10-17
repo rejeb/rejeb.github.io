@@ -1,0 +1,34 @@
+---
+layout: default
+---
+{% assign p = site.data.projects | where: "slug", page.project | first %}
+<article class="page project">
+  <header class="page-head">
+    <p class="crumb">{% include crumb.html %}</p>
+    <div class="project-badge">{{ p.short }}</div>
+    <h1>{{ p.name }}</h1>
+    <p class="lead">{{ p.tagline }}</p>
+    <ul class="meta">
+      <li><span>kind</span> {{ p.kind }}</li>
+      <li><span>version</span> {{ p.version }}</li>
+      <li><span>license</span> {{ p.license }}</li>
+    </ul>
+    <p class="tags">{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
+    <p class="actions">
+      <a class="btn" href="{{ p.repo }}">Source on GitHub</a>
+      {% for e in p.extra %}<a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>{% endfor %}
+    </p>
+  </header>
+
+  {% if p.screenshots %}
+  <section class="gallery" aria-label="Screenshots">
+    {% for s in p.screenshots %}
+      {% include window.html src=s.src caption=s.caption index=forloop.index eager=forloop.first %}
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,8 @@
+{%- comment -%} A true-colour screenshot in a HUD frame (corner brackets + figure label). Params: src, caption, index, eager {%- endcomment -%}
+<figure class="shot">
+  <figcaption class="shot-cap"><span class="shot-idx">FIG.{% if include.index < 10 %}0{% endif %}{{ include.index }}</span> // {{ include.caption }}</figcaption>
+  <button class="hud shot-open" data-view="{{ include.src | relative_url }}" data-caption="{{ include.caption }}" aria-label="Enlarge: {{ include.caption }}">
+    <img src="{{ include.src | relative_url }}" alt="{{ include.caption }}" {% unless include.eager %}loading="lazy"{% endunless %}>
+    <span class="shot-zoom" aria-hidden="true">[ + ] ZOOM</span>
+  </button>
+</figure>
