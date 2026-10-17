@@ -32,3 +32,35 @@ layout: default
     {{ content }}
   </div>
 </article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": {{ p.url | absolute_url | append: "#app" | jsonify }},
+      "name": {{ p.name | jsonify }},
+      "description": {{ page.description | default: p.tagline | strip | jsonify }},
+      "url": {{ p.url | absolute_url | jsonify }},
+      "image": {{ p.image | absolute_url | jsonify }},
+      "applicationCategory": {{ p.category | jsonify }},
+      "operatingSystem": {{ p.os | jsonify }},
+      "softwareVersion": {{ p.version | remove_first: "v" | jsonify }},
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "rbenrejeb", "url": {{ site.github_url | jsonify }} },
+      "sameAs": [{{ p.repo | jsonify }}{% for e in p.extra %}, {{ e.url | jsonify }}{% endfor %}]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": {{ p.name | jsonify }},
+      "codeRepository": {{ p.repo | jsonify }},
+      "programmingLanguage": {{ p.language | jsonify }},
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "targetProduct": { "@id": {{ p.url | absolute_url | append: "#app" | jsonify }} }
+    }
+  ]
+}
+</script>

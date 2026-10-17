@@ -1,7 +1,11 @@
 ---
 layout: project
 project: thermalright-lcd-control
-title: Thermalright LCD Control
+title: Thermalright LCD Control For Linux
+description: >-
+  Open-source Linux app to control Thermalright cooler LCD screens and RGB LEDs: themes, widgets,
+  live CPU and GPU metrics. Packages for Fedora, Debian and Ubuntu.
+image: /assets/img/og/og-thermalright-lcd-control.png
 permalink: /thermalright-lcd-control
 ---
 

@@ -1,6 +1,11 @@
 ---
 layout: page
-title: Privacy Policy
+title: Privacy Policy · Dataform Plugin for IntelliJ
+heading: Privacy Policy
+description: >-
+  How Dataform Plugin for IntelliJ accesses, uses and stores Google user data: OAuth scopes,
+  credentials kept on your computer, no telemetry, and Google API Limited Use compliance.
+image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
 

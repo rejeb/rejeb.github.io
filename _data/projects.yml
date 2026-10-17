@@ -8,6 +8,10 @@
   tags: [java, intellij, bigquery, gcp]
   version: v0.2.16
   license: Apache-2.0
+  category: DeveloperApplication
+  os: Windows, macOS, Linux (IntelliJ IDEA 2026.1+)
+  language: Java
+  image: /assets/img/og/og-dataform-plugin.png
   url: /dataform-plugin
   repo: https://github.com/rejeb/google-cloud-dataform-plugin
   extra:
@@ -36,7 +40,7 @@
     -- folds to: my-project.raw.raw_users
 - slug: thermalright-lcd-control
   dir: thermalright-lcd-control
-  name: Thermalright LCD Control
+  name: Thermalright LCD Control For Linux
   short: TR
   color: "#e11d48"
   tagline: Drive Thermalright cooler LCD screens and RGB LEDs on Linux, with themes, widgets and live hardware metrics.
@@ -44,6 +48,10 @@
   tags: [python, qt, linux, usb]
   version: v2.1.1
   license: Apache-2.0
+  category: UtilitiesApplication
+  os: Linux (Fedora, Debian, Ubuntu)
+  language: Python
+  image: /assets/img/og/og-thermalright-lcd-control.png
   url: /thermalright-lcd-control
   repo: https://github.com/rejeb/thermalright-lcd-control
   screenshots:
@@ -73,6 +81,10 @@
   tags: [scala, spark, netcdf, s3]
   version: v1.0.0
   license: Apache-2.0
+  category: DeveloperApplication
+  os: Any (JVM, Apache Spark 3.5)
+  language: Scala
+  image: /assets/img/og/og-netcdf-spark-parser.png
   url: /netcdf-spark-parser
   repo: https://github.com/rejeb/netcdf-spark-parser
   snippet_file: Main.scala

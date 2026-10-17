@@ -2,6 +2,10 @@
 layout: project
 project: netcdf-spark-parser
 title: NetCDF Spark Parser
+description: >-
+  Apache Spark DataSource V2 connector that reads NetCDF scientific files as DataFrames, from
+  local disk or Amazon S3. Scala 2.12 and 2.13, Spark 3.5.
+image: /assets/img/og/og-netcdf-spark-parser.png
 permalink: /netcdf-spark-parser
 ---
 

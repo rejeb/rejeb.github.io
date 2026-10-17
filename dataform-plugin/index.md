@@ -2,6 +2,10 @@
 layout: project
 project: dataform-plugin
 title: Dataform Plugin for IntelliJ
+description: >-
+  IntelliJ IDEA plugin for Google Cloud Dataform: SQLX completion, BigQuery dry runs, column-level
+  lineage, workflow runs and unit tests, without leaving the IDE. Free and open source.
+image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin
 ---
 

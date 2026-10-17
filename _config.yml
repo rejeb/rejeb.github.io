@@ -3,6 +3,14 @@ description: Open-source tools for data engineers and Linux tinkerers.
 author: rbenrejeb
 url: https://rejeb.is-a.dev
 github_url: https://github.com/rejeb
+lang: en
+image: /assets/img/og/og-home.png
+twitter:
+  card: summary_large_image
+social:
+  name: rbenrejeb
+  links:
+    - https://github.com/rejeb
 
 plugins:
   - jekyll-seo-tag
