@@ -8,11 +8,18 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-redirect-from
+  - jekyll-sitemap
 
 header_pages:
   - dataform-plugin/index.md
   - dataform-plugin/privacy-policy.md
   - dataform-plugin/terms-of-service.md
+
+defaults:
+  - scope:
+      path: google3dbbbf6d40b1866c.html
+    values:
+      sitemap: false
 
 exclude:
   - README.md
