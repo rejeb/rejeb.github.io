@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Terms of Service
-permalink: /terms-of-service/
+permalink: /dataform-plugin/terms-of-service/
 ---
 
 *Effective date: October 17, 2026*
@@ -35,7 +35,7 @@ IDEA is a trademark of JetBrains s.r.o.
 ## Privacy
 
 How the plugin handles your data is described in the
-[Privacy Policy]({{ '/privacy-policy/' | relative_url }}).
+[Privacy Policy]({{ '/dataform-plugin/privacy-policy/' | relative_url }}).
 
 ## JetBrains
 

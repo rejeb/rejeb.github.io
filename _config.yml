@@ -1,7 +1,5 @@
-title: Dataform Plugin for IntelliJ
-description: >-
-  An IntelliJ IDEA plugin for Google Cloud Dataform projects.
-  Independent open-source project, not affiliated with or endorsed by Google or JetBrains.
+title: rejeb.github.io
+description: Open-source projects by rbenrejeb.
 url: https://rejeb.github.io
 github_username: rejeb
 
@@ -9,10 +7,12 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 header_pages:
-  - privacy-policy.md
-  - terms-of-service.md
+  - dataform-plugin/index.md
+  - dataform-plugin/privacy-policy.md
+  - dataform-plugin/terms-of-service.md
 
 exclude:
   - README.md
