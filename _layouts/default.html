@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}?v={{ v }}" sizes="any">
   <link rel="icon" href="{{ '/favicon.svg' | relative_url }}?v={{ v }}" type="image/svg+xml">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}?v={{ v }}">
