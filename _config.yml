@@ -1,10 +1,7 @@
-title: rejeb.github.io
+title: rejeb.is-a.dev
 description: Open-source projects by rbenrejeb.
-url: https://rejeb.github.io
+url: https://rejeb.is-a.dev
 github_username: rejeb
-
-webmaster_verifications:
-  google: dkF4ZAmTy2y-6PvncGbYpjDBneDUybR6GmGQbCnapXU
 
 theme: minima
 plugins:
@@ -16,12 +13,6 @@ header_pages:
   - dataform-plugin/index.md
   - dataform-plugin/privacy-policy.md
   - dataform-plugin/terms-of-service.md
-
-defaults:
-  - scope:
-      path: google3dbbbf6d40b1866c.html
-    values:
-      sitemap: false
 
 exclude:
   - README.md
