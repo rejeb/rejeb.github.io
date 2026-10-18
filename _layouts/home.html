@@ -22,7 +22,7 @@ layout: default
   <div class="row2">
     <div class="panel">
       <div class="panel-title">═══ WHOAMI ═══</div>
-      <p class="prompt"><span class="ps">rbenrejeb@rbr-os:~$</span> whoami</p>
+      <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> WHOAMI</p>
       <p class="who">RBENREJEB</p>
       <p class="bio">I build developer tools, data connectors and hardware hacks: an IDE plugin for data pipelines, a Spark connector for scientific data, and a Linux driver reverse-engineered from a Windows app. Everything here is open source.</p>
     </div>
@@ -41,7 +41,7 @@ layout: default
 
   <div class="panel" id="projects">
     <div class="panel-title">═══ MAIN MENU ═══ SELECT A PROGRAM</div>
-    <p class="prompt"><span class="ps">rbenrejeb@rbr-os:~$</span> ls /opt</p>
+    <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> LS /OPT</p>
     <p class="hint">▶ CLICK A PROGRAM <span class="keys-only">OR PRESS <kbd>1</kbd>–<kbd>{{ site.data.projects | size }}</kbd> · <kbd>H</kbd> HOME · <kbd>ESC</kbd> BACK</span></p>
     <ol class="menu">
       {% for p in site.data.projects %}
@@ -62,7 +62,7 @@ layout: default
     <div class="panel-title">═══ QUICKSTART ═══</div>
     {% for p in site.data.projects %}
     <div class="snip">
-      <p class="prompt"><span class="ps">rbenrejeb@rbr-os:/opt/{{ p.dir }}$</span> cat {{ p.snippet_file }}</p>
+      <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:/OPT/{{ p.dir | upcase }}$</span> CAT {{ p.snippet_file | upcase }}</p>
       <pre><code>{{ p.snippet | escape }}</code></pre>
     </div>
     {% endfor %}
@@ -70,11 +70,11 @@ layout: default
 
   <div class="panel">
     <div class="panel-title">═══ DOCUMENTS ═══</div>
-    <p class="prompt"><span class="ps">rbenrejeb@rbr-os:~$</span> tree /usr/share/doc</p>
+    <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> TREE /USR/SHARE/DOC</p>
     <ul class="docs">
       {% for p in site.data.projects %}
       <li>
-        <a href="{{ p.url | relative_url }}">/usr/share/doc/{{ p.dir }}/README</a>
+        <a href="{{ p.url | relative_url }}">/USR/SHARE/DOC/{{ p.dir | upcase }}/README</a>
         <span class="links"><a href="{{ p.repo }}">SOURCE</a>{% for e in p.extra %} · <a href="{{ e.url }}">{{ e.label | upcase }}</a>{% endfor %}</span>
       </li>
       {% endfor %}
