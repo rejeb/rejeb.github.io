@@ -2,20 +2,22 @@
 layout: default
 ---
 {% assign p = site.data.projects | where: "slug", page.project | first %}
-{% assign chapters = site.pages | where_exp: "d", "d.url contains p.docs" | sort: "nav_order" %}
+{% if page.section == "features" %}{% assign base = p.features %}{% assign section_name = "Features" %}{% else %}{% assign base = p.docs %}{% assign section_name = "Documentation" %}{% endif %}
+{% assign chapters = site.pages | where_exp: "d", "d.url contains base" | sort: "nav_order" %}
 <article class="page doc">
   <header class="page-head">
     <p class="crumb">{% include crumb.html %}</p>
     <h1>{{ page.heading | default: page.title }}</h1>
-    <p class="lead">{{ p.name }} · Documentation</p>
+    <p class="lead">{{ p.name }} · {{ section_name }}</p>
     <p class="actions">
       <a class="btn ghost" href="{{ p.url | relative_url }}">Program page</a>
+      {% if page.section == "features" %}<a class="btn ghost" href="{{ p.docs | relative_url }}">Documentation</a>{% elsif p.features %}<a class="btn ghost" href="{{ p.features | relative_url }}">Features</a>{% endif %}
       <a class="btn ghost" href="{{ p.repo }}">Source on GitHub</a>
     </p>
   </header>
 
-  <nav class="panel doc-nav" aria-label="Documentation contents">
-    <div class="panel-title">═══ CONTENTS ═══</div>
+  <nav class="panel doc-nav" aria-label="{{ section_name }} contents">
+    <div class="panel-title">═══ {% if page.section == "features" %}FEATURES{% else %}CONTENTS{% endif %} ═══</div>
     <ul class="docs">
       {% for c in chapters %}
       <li><a href="{{ c.url | relative_url }}"{% if c.url == page.url %} aria-current="page"{% endif %}>{{ c.heading | default: c.title | upcase }}</a></li>

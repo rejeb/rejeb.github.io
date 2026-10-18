@@ -178,3 +178,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--hi); outline-of
 .doc-nav a[aria-current="page"]::after { content: " ◄"; }
 .prose blockquote { margin: 16px 0; padding: 8px 14px; border-left: 3px solid var(--hi); background: var(--bar); }
 .prose blockquote p { margin: 0; }
+.prose img { display: block; max-width: 100%; height: auto; margin: 14px 0; outline: 1px solid color-mix(in srgb, var(--line) 45%, transparent); }
