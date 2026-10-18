@@ -1,0 +1,29 @@
+---
+layout: default
+---
+{% assign p = site.data.projects | where: "slug", page.project | first %}
+{% assign chapters = site.pages | where_exp: "d", "d.url contains p.docs" | sort: "nav_order" %}
+<article class="page doc">
+  <header class="page-head">
+    <p class="crumb">{% include crumb.html %}</p>
+    <h1>{{ page.heading | default: page.title }}</h1>
+    <p class="lead">{{ p.name }} · Documentation</p>
+    <p class="actions">
+      <a class="btn ghost" href="{{ p.url | relative_url }}">Program page</a>
+      <a class="btn ghost" href="{{ p.repo }}">Source on GitHub</a>
+    </p>
+  </header>
+
+  <nav class="panel doc-nav" aria-label="Documentation contents">
+    <div class="panel-title">═══ CONTENTS ═══</div>
+    <ul class="docs">
+      {% for c in chapters %}
+      <li><a href="{{ c.url | relative_url }}"{% if c.url == page.url %} aria-current="page"{% endif %}>{{ c.heading | default: c.title | upcase }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>
