@@ -74,7 +74,7 @@ layout: default
     <ul class="docs">
       {% for p in site.data.projects %}
       <li>
-        <a href="{{ p.url | relative_url }}">/USR/SHARE/DOC/{{ p.dir | upcase }}/README</a>
+        <a href="{{ p.docs | relative_url }}">/USR/SHARE/DOC/{{ p.dir | upcase }}/README</a>
         <span class="links"><a href="{{ p.repo }}">SOURCE</a>{% for e in p.extra %} · <a href="{{ e.url }}">{{ e.label | upcase }}</a>{% endfor %}</span>
       </li>
       {% endfor %}

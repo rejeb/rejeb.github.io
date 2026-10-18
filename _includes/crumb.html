@@ -1,1 +1,10 @@
-{% assign segs = page.url | split: '/' %}{% assign acc = '' %}<a href="{{ '/' | relative_url }}">RBENREJEB@RBR-OS</a>:/USR/SHARE/DOC{% for s in segs %}{% if s != '' %}{% assign acc = acc | append: '/' | append: s %}{% assign label = s %}{% assign top = '/' | append: s %}{% if acc == top %}{% assign proj = site.data.projects | where: 'slug', s | first %}{% if proj %}{% assign label = proj.dir %}{% endif %}{% endif %}/<a href="{{ acc | relative_url }}">{{ label | upcase }}</a>{% endif %}{% endfor %}$ CAT README
+{%- comment -%} Shell-prompt breadcrumb: program pages live under /OPT/<DIR>, their docs under /USR/SHARE/DOC/<DIR>. {%- endcomment -%}
+{%- assign parts = page.url | remove_first: '/' | split: '/' -%}
+{%- assign slug = parts[0] -%}
+{%- assign proj = site.data.projects | where: 'slug', slug | first -%}
+{%- assign label = proj.dir | default: slug -%}
+{%- if parts[1] == 'docs' -%}{%- assign root = '/USR/SHARE/DOC' -%}{%- assign acc = '/' | append: slug | append: '/docs' -%}{%- assign start = 2 -%}
+{%- else -%}{%- assign root = '/OPT' -%}{%- assign acc = '/' | append: slug -%}{%- assign start = 1 -%}{%- endif -%}
+<a href="{{ '/' | relative_url }}">RBENREJEB@RBR-OS</a>:{{ root }}/<a href="{{ acc | relative_url }}">{{ label | upcase }}</a>
+{%- for s in parts offset: start -%}{%- assign acc = acc | append: '/' | append: s -%}/<a href="{{ acc | relative_url }}">{{ s | upcase }}</a>{%- endfor -%}
+$ CAT README

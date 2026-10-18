@@ -16,6 +16,7 @@ layout: default
     <p class="tags">{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
     <p class="actions">
       <a class="btn" href="{{ p.repo }}">Source on GitHub</a>
+      <a class="btn" href="{{ p.docs | relative_url }}">Documentation</a>
       {% for e in p.extra %}<a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>{% endfor %}
     </p>
   </header>

@@ -13,6 +13,7 @@
   language: Java
   image: /assets/img/og/og-dataform-plugin.png
   url: /dataform-plugin
+  docs: /dataform-plugin/docs
   repo: https://github.com/rejeb/google-cloud-dataform-plugin
   extra:
     - label: JetBrains Marketplace
@@ -53,6 +54,7 @@
   language: Python
   image: /assets/img/og/og-linux-thermalright-lcd-control.png
   url: /linux-thermalright-lcd-control
+  docs: /linux-thermalright-lcd-control/docs
   repo: https://github.com/rejeb/thermalright-lcd-control
   screenshots:
     - src: /assets/img/tr-device-configuration.webp
@@ -86,6 +88,7 @@
   language: Scala
   image: /assets/img/og/og-netcdf-spark-parser.png
   url: /netcdf-spark-parser
+  docs: /netcdf-spark-parser/docs
   repo: https://github.com/rejeb/netcdf-spark-parser
   snippet_file: Main.scala
   snippet: |
