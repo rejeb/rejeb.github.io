@@ -9,7 +9,7 @@ image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
 
-*Effective date: October 17, 2026*
+*Effective date: October 23, 2026*
 
 This Privacy Policy explains how **Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
 stores and shares your data, including data received from Google APIs. The plugin is an
@@ -46,14 +46,45 @@ service.
 
 ## How your data is used and stored
 
-- **Credentials.** The OAuth tokens and your account email address are stored in the IDE password
-  store on your computer, and are used only to authenticate the plugin's calls to Google Cloud.
+- **Credentials.** The OAuth refresh token and your account email address are stored in the IDE
+  password store on your computer, and are used only to authenticate the plugin's calls to Google
+  Cloud.
 - **Google Cloud data.** Data returned by Google Cloud, such as workspace files, table schemas and
   query results, is displayed in the IDE and may be kept in local caches on your computer. It is
   used only to provide the plugin's features.
 - **Your project files.** Your Dataform project is read and compiled locally. Files are sent to a
   Dataform workspace only when you push them, and SQL is sent to BigQuery only for dry runs,
   queries and workflow runs.
+
+## How your data is protected
+
+The plugin treats your OAuth tokens and your account email address as sensitive data and protects
+them as follows:
+
+- **Secure sign-in.** Sign-in uses Google's OAuth 2.0 authorization code flow for desktop apps,
+  with PKCE (S256 code challenge) and a random `state` value that is checked to prevent request
+  forgery. Sign-in happens in your browser on Google's own page, so the plugin never sees your
+  Google password. The redirect is received by a temporary server that listens only on your
+  computer (`127.0.0.1`) and is stopped as soon as sign-in finishes.
+- **Encrypted credential storage.** The refresh token and account email address are stored only in
+  the IDE password store (JetBrains Password Safe), which keeps secrets in your operating system's
+  secure credential storage: macOS Keychain, Windows Credential Manager, or the Secret Service
+  (GNOME Keyring or KWallet) on Linux, or in an encrypted KeePass database if you choose that in
+  the IDE settings. Credentials are never written to project files, plugin settings or logs.
+- **Short-lived access tokens.** Access tokens are kept only in memory while the IDE is running
+  and are refreshed from the stored refresh token when they expire. They are never written to
+  disk.
+- **Encryption in transit.** All communication with Google (sign-in, token exchange and Google
+  Cloud API calls) uses HTTPS (TLS). No data is sent over an unencrypted connection to any remote
+  server.
+- **Least privilege.** The plugin requests only the scopes listed above and uses them only for
+  the features you trigger. Your access to Google Cloud resources stays limited by the IAM
+  permissions of your own account.
+- **No developer access.** There is no server operated by the developer, so your credentials and
+  Google Cloud data are never sent to, stored by or accessible to the developer.
+- **Local data under your control.** Data cached by the plugin stays on your computer and is
+  protected by your operating system's user account and file permissions.
+- **Open source.** The full source code is public, so anyone can review how data is handled.
 
 ## How your data is shared
 
