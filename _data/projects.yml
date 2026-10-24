@@ -56,7 +56,7 @@
   image: /assets/img/og/og-linux-thermalright-lcd-control.png
   url: /linux-thermalright-lcd-control
   docs: /linux-thermalright-lcd-control/docs
-  repo: https://github.com/rejeb/thermalright-lcd-control
+  repo: https://github.com/rejeb/linux-thermalright-lcd-control
   screenshots:
     - src: /assets/img/tr-device-configuration.webp
       caption: Device configuration

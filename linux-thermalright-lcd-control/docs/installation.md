@@ -81,7 +81,7 @@ dependency, remove the package with `rpm-ostree uninstall thermalright-lcd-contr
    - `libhidapi-*` or `hidapi`, depending on your distribution
 2. Download the `.tar.gz` package:
    ```bash
-   wget https://github.com/rejeb/thermalright-lcd-control/releases/download/2.1.1/thermalright-lcd-control-2.1.1.tar.gz -P /tmp/
+   wget https://github.com/rejeb/linux-thermalright-lcd-control/releases/download/2.1.1/thermalright-lcd-control-2.1.1.tar.gz -P /tmp/
    ```
 3. Extract the archive:
    ```bash

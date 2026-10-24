@@ -121,7 +121,7 @@ Once the file is in the config directory, the device appears in the device list 
 ### Probe registry (known devices)
 
 Known devices are listed in the probe registry,
-[`src/thermalright_lcd_control/device_controller/display/probe_registry/`](https://github.com/rejeb/thermalright-lcd-control/tree/master/src/thermalright_lcd_control/device_controller/display/probe_registry),
+[`src/thermalright_lcd_control/device_controller/display/probe_registry/`](https://github.com/rejeb/linux-thermalright-lcd-control/tree/master/src/thermalright_lcd_control/device_controller/display/probe_registry),
 one YAML file per VID:PID named `<VID>x<PID>.yaml`:
 
 ```yaml
@@ -331,7 +331,7 @@ Check that `output.txt` contains the data you want.
 ### Cleaning the output
 
 Even if you stop the capture quickly, you will end up with several copies of the packets that make up the image. The
-[`output.txt`](https://github.com/rejeb/thermalright-lcd-control/blob/master/doc/output.txt) example in the repository
+[`output.txt`](https://github.com/rejeb/linux-thermalright-lcd-control/blob/master/doc/output.txt) example in the repository
 shows what you should get. To clean it:
 
 - The first line can usually be removed: the supported devices work without it.
@@ -339,7 +339,7 @@ shows what you should get. To clean it:
 - Find the next occurrence of that line and remove everything from there to the end of the file.
 
 You end up with a file like
-[`output_clean.txt`](https://github.com/rejeb/thermalright-lcd-control/blob/master/doc/output_clean.txt). In that
+[`output_clean.txt`](https://github.com/rejeb/linux-thermalright-lcd-control/blob/master/doc/output_clean.txt). In that
 example:
 
 - The image is a sequence of `f597`, the hex value of the green colour.

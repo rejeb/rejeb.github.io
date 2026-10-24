@@ -93,13 +93,13 @@ tarball for any other distribution. See the
 
 Contributions are welcome! To contribute:
 
-1. Fork the [project](https://github.com/rejeb/thermalright-lcd-control).
+1. Fork the [project](https://github.com/rejeb/linux-thermalright-lcd-control).
 2. Create a feature branch (`git checkout -b feature/my-feature`).
 3. Commit your changes (`git commit -am 'Add my feature'`).
 4. Push to your branch (`git push origin feature/my-feature`).
 5. Open a pull request.
 
 Testing reports for untested devices are just as valuable: open an
-[issue](https://github.com/rejeb/thermalright-lcd-control/issues) to say whether the application works with your
+[issue](https://github.com/rejeb/linux-thermalright-lcd-control/issues) to say whether the application works with your
 cooler. If you got a new device working, please contribute its registry entry so the next user gets it detected
 automatically (see the [probe registry]({{ '/linux-thermalright-lcd-control/docs/add-new-device#probe-registry-known-devices' | relative_url }})).

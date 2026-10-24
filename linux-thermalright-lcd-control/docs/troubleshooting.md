@@ -14,7 +14,7 @@ permalink: /linux-thermalright-lcd-control/docs/troubleshooting
 
 The logs are in `~/.local/state/thermalright-lcd-control/`, and the tray menu opens them with **Open Logs**. Look
 there first: they record device detection, connection errors and rendering problems. Attach them when you
-[open an issue](https://github.com/rejeb/thermalright-lcd-control/issues).
+[open an issue](https://github.com/rejeb/linux-thermalright-lcd-control/issues).
 
 ## Nothing is displayed on the device
 
