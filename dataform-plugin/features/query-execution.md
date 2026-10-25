@@ -16,7 +16,7 @@ permalink: /dataform-plugin/features/query-execution
 You can run the compiled query of an action in BigQuery without leaving the editor, to check what a
 table or view returns before running the workflow.
 
-![Query results of gold_customer_ltv in the Services tool window]({{ '/assets/img/df-shot7.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot7.webp" caption="Query results of gold_customer_ltv in the Services tool window" index=1 %}
 
 ## Run a query
 
@@ -30,6 +30,10 @@ The results open in the **Services** tool window, under the name of the target t
 - the **Job Info** tab shows the query statistics of the BigQuery job.
 
 In a unit test file, the same button is named **Execute Test Query**.
+
+The query always matches your sources: if an edit has not been compiled yet, the plugin waits for
+the compilation in the background (**Waiting for Dataform compilation…**, which you can cancel)
+before running it.
 
 ## Safe execution
 

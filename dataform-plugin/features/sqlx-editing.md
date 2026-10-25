@@ -18,14 +18,15 @@ The plugin understands the three parts of a SQLX file: the `config { }` block, `
 BigQuery SQL query, with its `${...}` template expressions. It also injects BigQuery SQL in the query
 template literals of `.js` and `.ts` definition files.
 
-![SQLX editor with the file lineage preview]({{ '/assets/img/df-shot3.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot3.webp" caption="SQLX editor with the file lineage preview" index=1 %}
 
 ## Highlighting and validation
 
 - Syntax highlighting for SQL, JavaScript and config blocks.
 - BigQuery SQL dialect, with syntax validation and error highlighting.
 - Schema-based validation of `workflow_settings.yaml` and `config { }` blocks.
-- Dataform compilation and BigQuery dry-run errors underlined on the tokens they refer to.
+- Dataform compilation and BigQuery dry-run errors underlined on the tokens they refer to, for
+  tables, views and operations declaring `hasOutput: true`.
 
 ## Completion
 
@@ -47,6 +48,27 @@ Typing `$` opens completion for a `${...}` expression.
 - `Ctrl+Click` on a column jumps to its declaration in the source table.
 - `DECLARE` variables of pre-operations resolve inside the query.
 - **Show Column Usages** (`Ctrl+Alt+Shift+U`) lists where a column is used.
+
+## Column changes
+
+When you save a change that renames, removes or retypes a column, the plugin waits for the project
+to compile and the schemas to refresh, then compares the columns with what they were before the
+save.
+
+- If downstream actions no longer work, the **Build** tool window opens with the broken actions
+  grouped per file, each with its BigQuery error and the change behind it.
+- In each broken file, the error names the change, for example *Unrecognized name: email — Column
+  `email` was renamed to `customer_email` in `customers`*, and keeps its **Replace with** quick
+  fix.
+- For a rename, the new column name is highlighted in the action you changed, and a balloon
+  appears. The highlight's quick fix and the balloon's **Rename downstream usages** link both open
+  the rename preview, listing every downstream read of the old name, `config { }` keys included.
+  A read inside a CTE or a subquery keeps its old name through an alias (`c.customer_email AS
+  email`), so the rest of that query is left alone.
+- An unqualified read of the old name in a query joining several tables is left unchanged and
+  reported in the preview.
+
+The highlight disappears once no downstream action fails on the old name.
 
 ## Quick Documentation
 

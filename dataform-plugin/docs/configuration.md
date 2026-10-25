@@ -91,7 +91,9 @@ The other options on **Settings ▸ Tools ▸ Dataform**:
 | **SQLFluff extra args** | Extra command-line arguments passed to SQLFluff. |
 | **Fold Dataform expressions to their evaluated value** | Shows `${...}` expressions as their value. Values are computed by running your project's JavaScript with the configured Node.js interpreter, so you can turn this off. |
 | **Show Dataform compilation and BigQuery errors inline in the editor** | Underlines compilation and dry-run errors on the tokens they refer to. |
-| **Recompile the Dataform project when a source file is saved** | Keeps the compiled graph, previews and lineage up to date as you edit. |
+
+The project is recompiled when you stop typing, when you save, and after external changes such as a
+checkout or a pull, so the compiled graph, previews and lineage stay up to date.
 
 ## Google Cloud sign-in
 
@@ -99,7 +101,7 @@ Language features (highlighting, completion, navigation, local compilation) work
 Everything below is done from the **Dataform Tools** tool window, on the right side of the IDE. It is
 available in projects that contain a Dataform project.
 
-![The Dataform Tools tool window with a repository and a workspace selected]({{ '/assets/img/df-shot7.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot7.webp" caption="The Dataform Tools tool window with a repository and a workspace selected" index=1 %}
 
 1. Open the **Dataform Tools** tool window.
 2. Click **Sign In to Google Cloud** in its title bar. Your browser opens the Google sign-in page.

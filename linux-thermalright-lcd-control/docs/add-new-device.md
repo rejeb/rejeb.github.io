@@ -276,7 +276,7 @@ sudo modprobe usbmon
 
 Use `lsusb` to find the bus id and device id of the display:
 
-![lsusb output showing the bus and device ids]({{ '/assets/img/docs/thermalright/lsusb.png' | relative_url }})
+{% include window.html src="/assets/img/docs/thermalright/lsusb.png" caption="lsusb output showing the bus and device ids" index=1 %}
 
 Here the bus id is 3 and the device id is 4.
 
@@ -305,7 +305,7 @@ Then capture the frames:
 1. In the Windows VM, keep the software running and disable the display's USB device in the VirtualBox USB
    settings:
 
-   ![Disabling the display's USB device in VirtualBox]({{ '/assets/img/docs/thermalright/disable_usb.png' | relative_url }})
+   {% include window.html src="/assets/img/docs/thermalright/disable_usb.png" caption="Disabling the display's USB device in VirtualBox" index=2 %}
 
 2. Restart the capture in Wireshark. If asked to save, select **Continue without saving**. With the filter applied
    and the USB device disabled, no packets should appear.

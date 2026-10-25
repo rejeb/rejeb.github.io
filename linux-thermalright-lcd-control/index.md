@@ -15,6 +15,32 @@ A single desktop application for managing Thermalright LCD displays and digital 
 The device controller runs inside the app, with udev rules granting device access, so no root service
 is needed. The USB protocol was reverse-engineered from the Thermalright Windows application.
 
+## Supported devices
+
+### LCD displays
+
+| VID:PID | Chip / Family | Thermalright product(s) | Protocol |
+|---|---|---|---|
+| `0402:3922` | — | Frozen Warframe 420 BLACK ARGB *(tested)* | SCSI BOT |
+| `0416:5302` | Winbond USBDISPLAY | Frozen Magic 240 / 360 (HID variants) | HID type 2 |
+| `0416:5406` | Winbond LCD (SCSI) | Frozen Warframe / Magic (SCSI variant) | SCSI |
+| `0416:5408` | Trofeo Vision (LY) | Trofeo Vision | LY bulk |
+| `0416:5409` | Trofeo Vision (LY1) | Trofeo Vision (LY1 firmware) | LY bulk |
+| `0418:5303` | ALi Corp LCD (HID type 3) | Frozen Magic 360 SCENIC / AIO 480 variants | HID type 3 |
+| `0418:5304` | ALi Corp LCD (HID type 3) | Frozen Magic 360 SCENIC / AIO 480 variants | HID type 3 |
+| `87AD:70DB` | ChiZhu Tech GrandVision family | AIO variants with 320x320 or 480x480 screen | USB bulk |
+| `87CD:70DB` | ChiZhu Tech (variant) | AIO variants (alternate firmware) | USB bulk |
+
+### RGB LED controllers
+
+| VID:PID | Device | Supported cooler layouts |
+|---|---|---|
+| `0416:8001` | Thermalright digital LED controller | AX120, PA120, AK120, LC1, LF8, LF10, LF11, LF12, LF13, LF15, CZ1, LC2 |
+
+If you own one of the untested devices, please test it and report back (see [Contributing](#contributing)).
+If your device is not listed, you can most likely add it yourself without writing any code: see
+[Add a new device]({{ '/linux-thermalright-lcd-control/docs/add-new-device' | relative_url }}).
+
 ## Features
 
 - **User-friendly GUI**: modern native Qt interface with light/dark theme.
@@ -56,32 +82,6 @@ is needed. The USB protocol was reverse-engineered from the Thermalright Windows
   - 12 cooler layouts supported: AX120, PA120, AK120, LC1, LF8, LF10, LF11, LF12, LF13, LF15, CZ1, LC2.
 - **System integration**: tray icon, session autostart (starts minimized), desktop notifications; rendering pauses
   while the window is hidden to save CPU.
-
-## Supported devices
-
-### LCD displays
-
-| VID:PID | Chip / Family | Thermalright product(s) | Protocol |
-|---|---|---|---|
-| `0402:3922` | — | Frozen Warframe 420 BLACK ARGB *(tested)* | SCSI BOT |
-| `0416:5302` | Winbond USBDISPLAY | Frozen Magic 240 / 360 (HID variants) | HID type 2 |
-| `0416:5406` | Winbond LCD (SCSI) | Frozen Warframe / Magic (SCSI variant) | SCSI |
-| `0416:5408` | Trofeo Vision (LY) | Trofeo Vision | LY bulk |
-| `0416:5409` | Trofeo Vision (LY1) | Trofeo Vision (LY1 firmware) | LY bulk |
-| `0418:5303` | ALi Corp LCD (HID type 3) | Frozen Magic 360 SCENIC / AIO 480 variants | HID type 3 |
-| `0418:5304` | ALi Corp LCD (HID type 3) | Frozen Magic 360 SCENIC / AIO 480 variants | HID type 3 |
-| `87AD:70DB` | ChiZhu Tech GrandVision family | AIO variants with 320x320 or 480x480 screen | USB bulk |
-| `87CD:70DB` | ChiZhu Tech (variant) | AIO variants (alternate firmware) | USB bulk |
-
-### RGB LED controllers
-
-| VID:PID | Device | Supported cooler layouts |
-|---|---|---|
-| `0416:8001` | Thermalright digital LED controller | AX120, PA120, AK120, LC1, LF8, LF10, LF11, LF12, LF13, LF15, CZ1, LC2 |
-
-If you own one of the untested devices, please test it and report back (see [Contributing](#contributing)).
-If your device is not listed, you can most likely add it yourself without writing any code: see
-[Add a new device]({{ '/linux-thermalright-lcd-control/docs/add-new-device' | relative_url }}).
 
 ## Installation
 

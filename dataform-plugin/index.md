@@ -38,9 +38,11 @@ packages. See the [Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relati
 - Quick Documentation (`Ctrl+Q`) for tables, columns, config keys and BigQuery functions.
 - Template expressions folded to their evaluated value.
 - In-place column rename that follows the column through the whole pipeline.
+- Column impact analysis on save, with a quick fix to rename the downstream usages of a renamed column.
 
 ### Compilation and preview
 - Background compilation, with Dataform and BigQuery dry-run errors shown on the exact tokens.
+- Build that reports compilation errors and failing dry-runs per file in the Build tool window.
 - Split editor next to each SQLX file with the compiled query, resolved schema and lineage graph.
 
 ### Data lineage

@@ -27,7 +27,7 @@ Open a SQLX file and select the **Lineage** view in the split editor toolbar, at
 editor. The panel shows the direct dependencies of the file: the actions it reads from on one side
 and the actions that read from it on the other.
 
-![File lineage of gold_customer_ltv.sqlx in the split editor]({{ '/assets/img/df-shot3.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot3.webp" caption="File lineage of gold_customer_ltv.sqlx in the split editor" index=1 %}
 
 Its toolbar lets you:
 
@@ -42,7 +42,7 @@ Open the project lineage with **Tools ▸ Open Dataform Lineage**, the lineage i
 toolbar, the editor or Project view context menu, or `Alt+Shift+D`. It opens in an editor tab named
 **Dataform Lineage**.
 
-![Project lineage with column lineage of unit_price]({{ '/assets/img/df-shot1.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot1.webp" caption="Project lineage with column lineage of unit_price" index=2 %}
 
 The view has three parts:
 

@@ -22,7 +22,7 @@ to Git.
 Before using it, sign in and add a repository as described in
 [Configuration]({{ '/dataform-plugin/docs/configuration' | relative_url }}).
 
-![The Dataform Tools tool window next to a SQLX file, with query results below]({{ '/assets/img/df-shot7.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot7.webp" caption="The Dataform Tools tool window next to a SQLX file, with query results below" index=1 %}
 
 ## Layout
 

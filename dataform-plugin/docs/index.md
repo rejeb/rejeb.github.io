@@ -15,7 +15,7 @@ debugging Google Cloud Dataform SQLX pipelines. It understands the SQL, JavaScri
 blocks of a SQLX file, compiles the project in the background, resolves table schemas through
 BigQuery dry runs, and talks to your Dataform repositories in Google Cloud.
 
-![SQLX editor with the file lineage preview]({{ '/assets/img/df-shot3.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot3.webp" caption="SQLX editor with the file lineage preview" index=1 %}
 
 ## Chapters
 

@@ -18,7 +18,7 @@ Each SQLX file opens in a split editor: your source on the left, and a preview o
 compiles it to on the right. The preview follows the background compilation, so it stays in sync as
 you edit.
 
-![Compiled query preview of gold_customer_ltv.sqlx with its assertions]({{ '/assets/img/df-shot5.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot5.webp" caption="Compiled query preview of gold_customer_ltv.sqlx with its assertions" index=1 %}
 
 ## Views
 

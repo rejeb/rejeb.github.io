@@ -14,8 +14,12 @@ nav_order: 6
 permalink: /dataform-plugin/features/workflow-runs
 ---
 
-The plugin starts Dataform workflow invocations in Google Cloud, on the workspace you selected, and
-shows their progress in the IDE.
+The plugin starts Dataform workflow invocations in Google Cloud from your local files, and shows
+their progress in the IDE.
+
+Each run creates a temporary Dataform workspace in the active repository, uploads your local files
+to it, starts the invocation there, and deletes the workspace when the run ends. You run your local
+project as it is, without pushing it to a shared workspace first.
 
 ## From the gutter
 
@@ -28,11 +32,10 @@ The [Lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}) details 
 To save a run and start it again later, create a **Dataform Workflow** run configuration with
 **Run ▸ Edit Configurations ▸ + ▸ Dataform Workflow**:
 
-![Dataform Workflow run configuration running the gold tag]({{ '/assets/img/df-shot11.webp' | relative_url }})
+{% include window.html src="/assets/img/df-shot11.webp" caption="Dataform Workflow run configuration running the gold tag" index=1 %}
 
 | Option | Description |
 |---|---|
-| **Workspace** | The Dataform workspace to run. |
 | **Actions / Tags / All** | Run the selected actions, the actions carrying the selected tags, or the whole project. |
 | **Include upstream dependencies** | Also run the actions the selection depends on. |
 | **Include downstream dependents** | Also run the actions that depend on the selection. |

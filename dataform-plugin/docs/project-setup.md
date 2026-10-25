@@ -39,6 +39,10 @@ README.md
 
 Once the project is open, the plugin installs its packages with `npm` and compiles it.
 
+**Build ▸ Build Project** compiles the project, refreshes the table schemas, and reports in the
+**Build** tool window the compilation errors and the failing BigQuery dry-runs, grouped per file.
+The build is shown as failed while a query fails, even when the compilation succeeds.
+
 ## Open an existing project
 
 Open the folder of a Dataform project, or pull one from Google Cloud with the
