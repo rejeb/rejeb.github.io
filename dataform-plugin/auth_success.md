@@ -15,8 +15,9 @@ The plugin can now browse your Dataform repositories and workspaces, run workflo
 execute queries in BigQuery. Your credentials are stored on your computer, in the IDE password
 store, and are never sent to the plugin's developer.
 
-To sign out, use the Dataform tool window in the IDE. You can also revoke the plugin's access at
-any time from your [Google Account permissions](https://myaccount.google.com/permissions).
+To sign out, use the Dataform Tools tool window in the IDE: this deletes the stored credentials
+from your computer. To revoke the plugin's access to your Google account, remove it from
+[Third-party apps & services](https://myaccount.google.com/connections).
 
 Something went wrong? Report it on the
 [GitHub issue tracker](https://github.com/rejeb/google-cloud-dataform-plugin/issues).

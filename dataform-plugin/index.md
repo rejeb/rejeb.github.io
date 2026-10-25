@@ -18,9 +18,10 @@ endorsed by Google or JetBrains.
 
 The plugin uses your Google account only to work with Google Cloud on your behalf: to interact
 with your Dataform repositories and workspaces (browse, create, push and pull files), to run
-Dataform workflow actions, and to execute queries in BigQuery. Your credentials stay on your
-computer, in the IDE password store, and the plugin never sends your data to its developer or
-to any third party. See the [Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relative_url }}) for details.
+Dataform workflow actions, and to execute queries in BigQuery. Your credentials are kept in the
+IDE password store, and the developer runs no server that receives your Google data: the plugin
+talks directly to Google Cloud, and to the npm registry only to look up and install Dataform
+packages. See the [Privacy Policy]({{ '/dataform-plugin/privacy-policy' | relative_url }}) for details.
 
 ## Features
 

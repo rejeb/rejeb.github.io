@@ -3,8 +3,8 @@ layout: page
 title: Privacy Policy · Dataform Plugin for IntelliJ
 heading: Privacy Policy
 description: >-
-  How Dataform Plugin for IntelliJ accesses, uses and stores Google user data: OAuth scopes,
-  credentials kept on your computer, no telemetry, and Google API Limited Use compliance.
+  How Dataform Plugin for IntelliJ accesses, uses, stores and shares Google user data: OAuth scopes,
+  credentials in the IDE password store, which services receive which data, retention and deletion.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
@@ -12,111 +12,167 @@ permalink: /dataform-plugin/privacy-policy
 *Effective date: October 23, 2026*
 
 This Privacy Policy explains how **Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
-stores and shares your data, including data received from Google APIs. The plugin is an
-open-source project; its source code is available on
-[GitHub](https://github.com/rejeb/google-cloud-dataform-plugin).
+stores and shares your data, including data received from Google APIs. The plugin is open source:
+its code is available on [GitHub](https://github.com/rejeb/google-cloud-dataform-plugin).
+
+In this policy:
+
+- **Google user data** means data the plugin receives from Google APIs on your behalf: your
+  account email address, and the Google Cloud resources and content your account can access,
+  such as Dataform repositories, workspace files, table schemas, job details and query results.
+- **Credentials** means the OAuth refresh token and the short-lived access tokens obtained from it.
+- **Project content** means the files of your local Dataform project and the SQL compiled from them.
+- **The developer** means the author of the plugin.
 
 ## Summary
 
-- The plugin runs entirely on your computer. There is no server operated by the developer.
-- The plugin does not collect telemetry, analytics or crash reports.
-- Your Google credentials are stored only on your computer, in the IDE password store.
-- Your data is exchanged only between your computer and Google Cloud. It is never sent to the
-  developer or to any third party.
-
-## Why the plugin asks you to sign in with Google
-
-Signing in lets the plugin work with Google Cloud on your behalf: to interact with your Dataform
-repositories and workspaces, to run Dataform workflow actions, and to execute queries in
-BigQuery. Signing in is optional; the language features of the plugin work without it.
+- The plugin runs inside your IDE. The developer runs no server that receives your Google user
+  data, credentials or project content.
+- The plugin exchanges data directly with Google. Some requests are sent automatically while you
+  work, such as BigQuery dry runs of the SQL compiled from your project.
+- The plugin also contacts the npm registry to look up and install Dataform packages.
+- Your refresh token and email address are stored in the IDE password store.
+- The plugin contains no telemetry, analytics or crash reporting.
+- Signing out deletes your credentials from your computer. It does not revoke the plugin's access
+  to your Google account or delete other data. See
+  [Data retention and deletion](#data-retention-and-deletion).
 
 ## Google user data the plugin accesses
 
-When you sign in, the plugin requests the following OAuth scopes:
+Signing in is optional: highlighting, completion, navigation and local compilation work without it.
+When you sign in, the plugin requests these OAuth scopes:
 
 | Scope | Why the plugin needs it |
 |---|---|
-| `openid` | To identify the signed-in account. |
-| `email` | To show which account is signed in, and to use your email address as the commit author when you push files to a Dataform workspace. |
-| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs used by the plugin: Dataform (repositories, workspaces, files, compilation and workflow invocations), BigQuery (dry runs, queries, table schemas and job details) and IAM (listing the service accounts a repository can run with). |
+| `openid` | Part of Google's sign-in protocol, used together with `email`. |
+| `email` | To read your account email address, which the plugin shows as the signed-in account and uses as the author of the commits you make in a Dataform workspace. |
+| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs the plugin uses: Dataform (repositories, workspaces, files, commits, compilation results and workflow invocations), BigQuery (dry runs, queries, datasets and job details) and IAM (listing the service accounts a repository can run with). |
 
-The plugin only calls these APIs when you use a feature that needs them, and only for the Google
-Cloud projects you configure. It does not read your Gmail, Drive, contacts or any other Google
-service.
+The plugin uses these scopes only for the features described in this policy, and what it can do
+in Google Cloud is limited by the IAM permissions of your account. It uses only the credential
+created when you sign in through it, never other Google credentials on your computer, such as
+those of the gcloud CLI.
 
-## How your data is used and stored
+## How the plugin uses your data
 
-- **Credentials.** The OAuth refresh token and your account email address are stored in the IDE
-  password store on your computer, and are used only to authenticate the plugin's calls to Google
-  Cloud.
-- **Google Cloud data.** Data returned by Google Cloud, such as workspace files, table schemas and
-  query results, is displayed in the IDE and may be kept in local caches on your computer. It is
-  used only to provide the plugin's features.
-- **Your project files.** Your Dataform project is read and compiled locally. Files are sent to a
-  Dataform workspace only when you push them, and SQL is sent to BigQuery only for dry runs,
-  queries and workflow runs.
+The plugin uses your credentials only to authorize its requests to Google APIs.
+
+**On your computer.** The plugin compiles your project and evaluates its JavaScript locally, with
+the Dataform CLI and Node.js, and runs `sqlfluff` if you configure it for formatting. Editor
+features such as completion, navigation, lineage and the compiled preview use this local result
+and cached table schemas.
+
+**In Google Cloud.** The following features send data to Google Cloud, which processes it there:
+
+- **BigQuery dry runs.** While you are signed in, the plugin automatically sends SQL compiled from
+  your project to BigQuery as dry runs, for example after you open, edit or save a SQLX file, to
+  detect SQL errors and read the output columns of your tables. A dry run checks a query without
+  running it. Signing out stops dry runs.
+- **BigQuery queries.** When you run a query or a Dataform unit test, the plugin sends its SQL,
+  including the test data, to BigQuery, which runs it and returns the results to the IDE.
+- **Uploading files.** When you push, and before each workflow run, the plugin uploads your project
+  files to the target Dataform workspace, except `.idea`, `.git`, `node_modules`, `.dataform` and
+  files matched by `.gitignore` or `.gcloudignore`, and can delete workspace files that no longer
+  exist locally. Use these ignore files to keep local secrets out of the upload.
+- **Repositories and workspaces.** When you ask it to, the plugin pulls workspace files into your
+  project, compares them with your local files, creates repositories and workspaces, and commits
+  workspace changes with your email address as the author (or your operating system user name if
+  the email address cannot be read). When you configure or select a repository, it lists the
+  repository's workspaces and files and the service accounts of its Google Cloud project. It may
+  also list the workspace files in the background when you open the project.
+- **Workflow runs.** When you run a workflow, the plugin first uploads your project files as
+  described above. Dataform then compiles the workspace and runs the selected actions in BigQuery,
+  under the identity configured for the repository, such as its service account. The plugin reads
+  the progress of the run and its BigQuery job details to show them in the IDE.
+
+Google processes this data under the terms of your Google Cloud account and the
+[Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). Your sign-in is
+covered by the [Google Privacy Policy](https://policies.google.com/privacy). The plugin does not
+control how long Google Cloud keeps this data, such as query results, job history, workflow
+invocations or commits.
 
 ## How your data is protected
 
-The plugin treats your OAuth tokens and your account email address as sensitive data and protects
-them as follows:
+- **Sign-in.** You sign in on Google's page in your browser, so the plugin never sees your Google
+  password. The plugin uses Google's OAuth flow for desktop apps with PKCE, and receives the
+  response through a temporary server on your computer (`127.0.0.1`) that stops when sign-in ends.
+- **Credentials.** The refresh token and your email address are stored in JetBrains Password Safe.
+  Depending on your
+  [IDE settings](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html),
+  it keeps them in the native keychain of macOS or Linux, in a KeePass file, or only in memory
+  until the IDE restarts. Access tokens are kept only in memory. The plugin does not write
+  credentials to project or settings files.
+- **Connections.** The plugin connects to Google and to `registry.npmjs.org` over HTTPS.
+- **Local files.** Caches, settings and logs are ordinary, unencrypted files, protected by your
+  operating system account.
+- **Logs.** The plugin does not deliberately log tokens, but the warnings and errors it writes to
+  the IDE log can include file paths, SQL and error messages.
 
-- **Secure sign-in.** Sign-in uses Google's OAuth 2.0 authorization code flow for desktop apps,
-  with PKCE (S256 code challenge) and a random `state` value that is checked to prevent request
-  forgery. Sign-in happens in your browser on Google's own page, so the plugin never sees your
-  Google password. The redirect is received by a temporary server that listens only on your
-  computer (`127.0.0.1`) and is stopped as soon as sign-in finishes.
-- **Encrypted credential storage.** The refresh token and account email address are stored only in
-  the IDE password store (JetBrains Password Safe), which keeps secrets in your operating system's
-  secure credential storage: macOS Keychain, Windows Credential Manager, or the Secret Service
-  (GNOME Keyring or KWallet) on Linux, or in an encrypted KeePass database if you choose that in
-  the IDE settings. Credentials are never written to project files, plugin settings or logs.
-- **Short-lived access tokens.** Access tokens are kept only in memory while the IDE is running
-  and are refreshed from the stored refresh token when they expire. They are never written to
-  disk.
-- **Encryption in transit.** All communication with Google (sign-in, token exchange and Google
-  Cloud API calls) uses HTTPS (TLS). No data is sent over an unencrypted connection to any remote
-  server.
-- **Least privilege.** The plugin requests only the scopes listed above and uses them only for
-  the features you trigger. Your access to Google Cloud resources stays limited by the IAM
-  permissions of your own account.
-- **No developer access.** There is no server operated by the developer, so your credentials and
-  Google Cloud data are never sent to, stored by or accessible to the developer.
-- **Local data under your control.** Data cached by the plugin stays on your computer and is
-  protected by your operating system's user account and file permissions.
-- **Open source.** The full source code is public, so anyone can review how data is handled.
+## Who receives data
 
-## How your data is shared
+The plugin does not sell your data and does not send Google user data, credentials or project
+content to the developer. It communicates with these services:
 
-The plugin does not sell, share or transfer your data to the developer or to any third party.
-The only parties that receive data are:
+| Recipient | When | What is sent |
+|---|---|---|
+| **Google** (OAuth, Dataform, BigQuery and IAM APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
+| **npm registry** | When you create a project, install the Dataform CLI from the plugin settings, or the plugin installs your project's packages. | Package names and versions, including the dependencies in your project's `package.json` (which may come from a Dataform workspace), and standard request information such as your IP address. The plugin adds no credentials, SQL or query results. |
+| **This website**, hosted by GitHub Pages | Once at the end of sign-in, when your browser opens a confirmation page. | A normal page request, which contains no authorization code, token or account information and which GitHub may log with your IP address (see the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)). The page also loads fonts from Google Fonts. |
 
-- **Google**, when the plugin calls Google Cloud APIs on your behalf. Google processes that data
-  under the [Google Privacy Policy](https://policies.google.com/privacy) and the
-  [Google Cloud terms](https://cloud.google.com/terms).
-- **The npm registry** (`registry.npmjs.org`), which the plugin contacts to find and install
-  `@dataform/core` and the Dataform CLI. These requests do not contain your Google data.
+To install packages, the plugin runs `npm install` or `dataform install`, which use your npm
+configuration and may contact another registry if you have configured one. What npm, the Dataform
+CLI and the installed packages do is not covered by this policy.
+
+If your Dataform repository is connected to a Git provider such as GitHub or GitLab, Dataform, not
+the plugin, sends your commits there.
+
+## Data retention and deletion
+
+The developer holds no copy of your data. On your computer, the plugin keeps data in these places
+(the IDE directories are described in
+[Directories used by the IDE](https://www.jetbrains.com/help/idea/directories-used-by-the-ide-to-store-settings-caches-plugins-and-logs.html)):
+
+| Data | Where it is kept | Kept until |
+|---|---|---|
+| Refresh token and account email address | Password Safe | You sign out, or the IDE restarts if Password Safe does not save passwords |
+| Access tokens | Memory | They expire (after about an hour), you sign out, or the IDE closes |
+| Table schemas from dry runs, the latest compilation result (including compiled SQL) and the list of remote workspace files | `cache-state.xml`, in the project's folder under `projects` in the IDE system directory | You delete the file while the IDE is closed |
+| Query results | Memory | You close the result or the project |
+| Repository settings (Google Cloud project, location, repository, service account and workspace) | `.idea/dataform-gcp-repository-setting.xml` in your project, shared if you commit `.idea` | You remove the repository with **Manage Repositories** or delete the file |
+| Files pulled from a Dataform workspace | Your project | You delete them |
+| Warnings and errors | IDE log (`idea.log`) | The IDE rotates the log |
+
+Signing out removes only your credentials and stored email address. Uninstalling the plugin removes
+none of this data: sign out before uninstalling, or afterwards delete the entry whose name contains
+`Dataform GCP` from your keychain or KeePass database.
+
+### Deleting your data
+
+1. **Delete local credentials.** Click **Sign Out of Google Cloud** in the Dataform Tools tool
+   window. This deletes the refresh token and email address from Password Safe and clears tokens
+   from memory. It does not contact Google.
+2. **Revoke the plugin's access.** Remove **Dataform Plugin for IntelliJ** from
+   [Third-party apps & services](https://myaccount.google.com/connections) in your Google Account.
+   Any copy of the refresh token then stops working.
+3. **Remove local data.** Delete the files listed above. The plugin has no command for this.
+4. **Delete data in Google Cloud.** Signing out and uninstalling delete nothing in Google Cloud.
+   Manage or delete repositories, workspaces, commits, workflow invocations, tables and job history
+   there. Commits made with your email address as author remain in the repository history.
 
 ## Limited Use disclosure
 
 The plugin's use and transfer of information received from Google APIs adheres to the
 [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
-including the Limited Use requirements.
-
-## Revoking access and deleting your data
-
-- **Sign out** from the Dataform tool window to delete the stored credentials and email address
-  from your computer.
-- **Revoke the plugin's access** to your Google account at any time from your
-  [Google Account permissions](https://myaccount.google.com/permissions).
-- **Uninstalling the plugin** stops all access. Data stored in your Google Cloud projects is
-  managed by you in Google Cloud.
+including the
+[Limited Use requirements](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes).
 
 ## JetBrains
 
-The IntelliJ IDE and the JetBrains Marketplace, from which you install the plugin, are provided by
-JetBrains and are covered by the [JetBrains Privacy Policy](https://www.jetbrains.com/legal/docs/privacy/privacy/).
-This policy covers only the plugin.
+The IDE, Password Safe and the JetBrains Marketplace, from which you install the plugin, are
+provided by JetBrains and covered by the
+[JetBrains Privacy Policy](https://www.jetbrains.com/legal/docs/privacy/privacy/). IDE features
+that the plugin does not control, such as settings synchronization, backups and memory dumps, are
+not covered by this policy.
 
 ## Changes to this policy
 
@@ -127,3 +183,6 @@ such as new OAuth scopes, are also mentioned in the plugin's release notes.
 
 For questions about this policy, open an issue on the
 [GitHub issue tracker](https://github.com/rejeb/google-cloud-dataform-plugin/issues).
+GitHub issues are public: **do not post tokens, project content, SQL or query results. Review IDE
+logs before attaching them, and never attach memory dumps (`.hprof` files), which can contain
+credentials.**

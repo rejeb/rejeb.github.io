@@ -6,10 +6,10 @@
   tagline: Write, navigate, run and debug Dataform SQLX pipelines without leaving IntelliJ IDEA.
   kind: IntelliJ plugin
   tags: [java, intellij, bigquery, gcp]
-  version: v0.2.16
+  version: v0.2.24
   license: Apache-2.0
   category: DeveloperApplication
-  os: Windows, macOS, Linux (IntelliJ IDEA 2026.1+)
+  os: Windows, macOS, Linux (IntelliJ IDEA 2026.2+)
   language: Java
   image: /assets/img/og/og-dataform-plugin.png
   url: /dataform-plugin
