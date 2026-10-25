@@ -1,10 +1,10 @@
 ---
 layout: doc
 project: dataform-plugin
-title: Configuration · Dataform Plugin for IntelliJ
+title: Configuration · Google Cloud Dataform Plugin for IntelliJ
 heading: Configuration
 description: >-
-  Configuration of Dataform Plugin for IntelliJ: Node.js, Dataform CLI and plugin settings, Google
+  Configuration of Google Cloud Dataform Plugin for IntelliJ: Node.js, Dataform CLI and plugin settings, Google
   Cloud sign-in, Dataform repositories and service accounts.
 nav_order: 4
 permalink: /dataform-plugin/docs/configuration

@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Dataform panel · Dataform Plugin for IntelliJ
+title: Dataform panel · Google Cloud Dataform Plugin for IntelliJ
 heading: Dataform panel
 summary: >-
   The Dataform Tools tool window: repositories, workspaces, remote files, pull, push and Git
   commits.
 description: >-
-  The Dataform Tools tool window of Dataform Plugin for IntelliJ: repositories, workspaces, remote
+  The Dataform Tools tool window of Google Cloud Dataform Plugin for IntelliJ: repositories, workspaces, remote
   files, pull, push, commits and comparing files with their remote version.
 nav_order: 5
 permalink: /dataform-plugin/features/dataform-panel

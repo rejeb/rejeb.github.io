@@ -1,6 +1,6 @@
 - slug: dataform-plugin
   dir: dataform-intellij-plugin
-  name: Dataform Plugin for IntelliJ
+  name: Google Cloud Dataform Plugin for IntelliJ
   short: DF
   color: "#6366f1"
   tagline: Write, navigate, run and debug Dataform SQLX pipelines without leaving IntelliJ IDEA.

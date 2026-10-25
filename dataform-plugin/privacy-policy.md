@@ -1,17 +1,15 @@
 ---
 layout: page
-title: Privacy Policy · Dataform Plugin for IntelliJ
+title: Privacy Policy · Google Cloud Dataform Plugin for IntelliJ
 heading: Privacy Policy
 description: >-
-  How Dataform Plugin for IntelliJ accesses, uses, stores and shares Google user data: OAuth scopes,
+  How Google Cloud Dataform Plugin for IntelliJ accesses, uses, stores and shares Google user data: OAuth scopes,
   credentials in the IDE password store, which services receive which data, retention and deletion.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
 
-*Effective date: October 23, 2026*
-
-This Privacy Policy explains how **Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
+This Privacy Policy explains how **Google Cloud Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
 stores and shares your data, including data received from Google APIs. The plugin is open source:
 its code is available on [GitHub](https://github.com/rejeb/google-cloud-dataform-plugin).
 
@@ -111,20 +109,21 @@ invocations or commits.
 ## Who receives data
 
 The plugin does not sell your data and does not send Google user data, credentials or project
-content to the developer. It communicates with these services:
+content to the developer. It exchanges Google user data only with Google:
 
 | Recipient | When | What is sent |
 |---|---|---|
 | **Google** (OAuth, Dataform, BigQuery and IAM APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
-| **npm registry** | When you create a project, install the Dataform CLI from the plugin settings, or the plugin installs your project's packages. | Package names and versions, including the dependencies in your project's `package.json` (which may come from a Dataform workspace), and standard request information such as your IP address. The plugin adds no credentials, SQL or query results. |
-| **This website**, hosted by GitHub Pages | Once at the end of sign-in, when your browser opens a confirmation page. | A normal page request, which contains no authorization code, token or account information and which GitHub may log with your IP address (see the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)). The page also loads fonts from Google Fonts. |
 
-To install packages, the plugin runs `npm install` or `dataform install`, which use your npm
-configuration and may contact another registry if you have configured one. What npm, the Dataform
-CLI and the installed packages do is not covered by this policy.
+To compile your project, the plugin runs the Dataform CLI (`dataform compile`). During compilation,
+the Dataform CLI may download packages from npm, such as the Dataform core version set in
+`workflow_settings.yaml` or the dependencies in `package.json`. This is the Dataform CLI's own
+behavior and is not handled by the plugin. What the Dataform CLI and the packages it installs do is
+not covered by this policy.
 
-If your Dataform repository is connected to a Git provider such as GitHub or GitLab, Dataform, not
-the plugin, sends your commits there.
+Commit and push actions go through the Dataform API. If you linked your Dataform repository to a
+remote Git repository, Google Dataform pushes the commits to it. The plugin never connects to your
+Git provider.
 
 ## Data retention and deletion
 
@@ -151,7 +150,7 @@ none of this data: sign out before uninstalling, or afterwards delete the entry 
 1. **Delete local credentials.** Click **Sign Out of Google Cloud** in the Dataform Tools tool
    window. This deletes the refresh token and email address from Password Safe and clears tokens
    from memory. It does not contact Google.
-2. **Revoke the plugin's access.** Remove **Dataform Plugin for IntelliJ** from
+2. **Revoke the plugin's access.** Remove **Google Cloud Dataform Plugin for IntelliJ** from
    [Third-party apps & services](https://myaccount.google.com/connections) in your Google Account.
    Any copy of the refresh token then stops working.
 3. **Remove local data.** Delete the files listed above. The plugin has no command for this.

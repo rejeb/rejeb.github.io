@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Lineage · Dataform Plugin for IntelliJ
+title: Lineage · Google Cloud Dataform Plugin for IntelliJ
 heading: Lineage
 summary: >-
   File and project lineage graphs of your Dataform actions, with column-level lineage, filters,
   search and focus.
 description: >-
-  Data lineage in Dataform Plugin for IntelliJ: the file lineage of the split editor, the project
+  Data lineage in Google Cloud Dataform Plugin for IntelliJ: the file lineage of the split editor, the project
   lineage view, column-level lineage, filters, search and focus.
 nav_order: 4
 permalink: /dataform-plugin/features/lineage

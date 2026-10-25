@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Compiled preview · Dataform Plugin for IntelliJ
+title: Compiled preview · Google Cloud Dataform Plugin for IntelliJ
 heading: Compiled preview
 summary: >-
   A split editor next to each SQLX file with the compiled query, the resolved schema and the file
   lineage.
 description: >-
-  The compiled preview of Dataform Plugin for IntelliJ: compiled SQL, resolved schema and lineage
+  The compiled preview of Google Cloud Dataform Plugin for IntelliJ: compiled SQL, resolved schema and lineage
   next to each SQLX file.
 nav_order: 3
 permalink: /dataform-plugin/features/compiled-preview

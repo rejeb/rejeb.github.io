@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Terms of Service · Dataform Plugin for IntelliJ
+title: Terms of Service · Google Cloud Dataform Plugin for IntelliJ
 heading: Terms of Service
 description: >-
-  Terms of Service for Dataform Plugin for IntelliJ, a free open-source plugin for Google Cloud
+  Terms of Service for Google Cloud Dataform Plugin for IntelliJ, a free open-source plugin for Google Cloud
   Dataform licensed under Apache 2.0.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/terms-of-service
@@ -11,7 +11,7 @@ permalink: /dataform-plugin/terms-of-service
 
 *Effective date: October 17, 2026*
 
-These Terms of Service ("Terms") apply to your use of **Dataform Plugin for IntelliJ** (the
+These Terms of Service ("Terms") apply to your use of **Google Cloud Dataform Plugin for IntelliJ** (the
 "plugin"). By installing or using the plugin, you agree to these Terms.
 
 ## License

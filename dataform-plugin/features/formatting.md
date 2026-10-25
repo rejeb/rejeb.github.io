@@ -2,12 +2,12 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Formatting · Dataform Plugin for IntelliJ
+title: Formatting · Google Cloud Dataform Plugin for IntelliJ
 heading: Formatting
 summary: >-
   Format SQLX files with the built-in formatter, or with SQLFluff.
 description: >-
-  SQLX formatting in Dataform Plugin for IntelliJ: the built-in formatter and the SQLFluff
+  SQLX formatting in Google Cloud Dataform Plugin for IntelliJ: the built-in formatter and the SQLFluff
   integration.
 nav_order: 9
 permalink: /dataform-plugin/features/formatting

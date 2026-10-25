@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Unit tests · Dataform Plugin for IntelliJ
+title: Unit tests · Google Cloud Dataform Plugin for IntelliJ
 heading: Unit tests
 summary: >-
   Generate Dataform unit tests pre-filled from resolved schemas, and run them in BigQuery with the
   IDE test runner.
 description: >-
-  Dataform unit tests in Dataform Plugin for IntelliJ: test generation from schemas, completion and
+  Dataform unit tests in Google Cloud Dataform Plugin for IntelliJ: test generation from schemas, completion and
   running tests with the IDE test runner.
 nav_order: 8
 permalink: /dataform-plugin/features/unit-tests

@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: SQLX editing · Dataform Plugin for IntelliJ
+title: SQLX editing · Google Cloud Dataform Plugin for IntelliJ
 heading: SQLX editing
 summary: >-
   Highlighting, completion, navigation, Quick Documentation and inline expression values for SQLX
   files, with BigQuery SQL and JavaScript support.
 description: >-
-  SQLX editing in Dataform Plugin for IntelliJ: highlighting, completion, navigation, Quick
+  SQLX editing in Google Cloud Dataform Plugin for IntelliJ: highlighting, completion, navigation, Quick
   Documentation and template expressions folded to their value.
 nav_order: 2
 permalink: /dataform-plugin/features/sqlx-editing

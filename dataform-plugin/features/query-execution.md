@@ -2,12 +2,12 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Query execution · Dataform Plugin for IntelliJ
+title: Query execution · Google Cloud Dataform Plugin for IntelliJ
 heading: Query execution
 summary: >-
   Run the compiled query of an action in BigQuery and browse the results in a paged data grid.
 description: >-
-  Executing compiled Dataform queries in BigQuery from IntelliJ IDEA with Dataform Plugin for
+  Executing compiled Dataform queries in BigQuery from IntelliJ IDEA with Google Cloud Dataform Plugin for
   IntelliJ, with paged results and job statistics.
 nav_order: 7
 permalink: /dataform-plugin/features/query-execution

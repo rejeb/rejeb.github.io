@@ -1,10 +1,10 @@
 ---
 layout: doc
 project: dataform-plugin
-title: Project setup · Dataform Plugin for IntelliJ
+title: Project setup · Google Cloud Dataform Plugin for IntelliJ
 heading: Project setup
 description: >-
-  Creating and opening Dataform projects with Dataform Plugin for IntelliJ: the New Project wizard,
+  Creating and opening Dataform projects with Google Cloud Dataform Plugin for IntelliJ: the New Project wizard,
   generated files and package installation.
 nav_order: 3
 permalink: /dataform-plugin/docs/project-setup

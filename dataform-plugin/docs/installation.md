@@ -1,9 +1,9 @@
 ---
 layout: doc
 project: dataform-plugin
-title: Installation · Dataform Plugin for IntelliJ
+title: Installation · Google Cloud Dataform Plugin for IntelliJ
 heading: Installation
-description: Installation documentation for Dataform Plugin for IntelliJ.
+description: Installation documentation for Google Cloud Dataform Plugin for IntelliJ.
 nav_order: 2
 permalink: /dataform-plugin/docs/installation
 ---

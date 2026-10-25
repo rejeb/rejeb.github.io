@@ -2,13 +2,13 @@
 layout: doc
 section: features
 project: dataform-plugin
-title: Workflow runs · Dataform Plugin for IntelliJ
+title: Workflow runs · Google Cloud Dataform Plugin for IntelliJ
 heading: Workflow runs
 summary: >-
   Run actions, tags or the whole workflow from the gutter or a run configuration, and follow each
   action live with its BigQuery job details.
 description: >-
-  Running Dataform workflows from IntelliJ IDEA with Dataform Plugin for IntelliJ: gutter icons, the
+  Running Dataform workflows from IntelliJ IDEA with Google Cloud Dataform Plugin for IntelliJ: gutter icons, the
   Dataform Workflow run configuration and the execution view.
 nav_order: 6
 permalink: /dataform-plugin/features/workflow-runs

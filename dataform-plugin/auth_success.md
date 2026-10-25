@@ -1,14 +1,14 @@
 ---
 layout: page
-title: Signed in · Dataform Plugin for IntelliJ
+title: Signed in · Google Cloud Dataform Plugin for IntelliJ
 heading: You are signed in
-description: Google sign-in for Dataform Plugin for IntelliJ completed. You can close this tab and return to the IDE.
+description: Google sign-in for Google Cloud Dataform Plugin for IntelliJ completed. You can close this tab and return to the IDE.
 permalink: /dataform-plugin/auth_success
 sitemap: false
 noindex: true
 ---
 
-Dataform Plugin for IntelliJ is now connected to your Google account.
+Google Cloud Dataform Plugin for IntelliJ is now connected to your Google account.
 **You can close this tab and return to IntelliJ IDEA.**
 
 The plugin can now browse your Dataform repositories and workspaces, run workflow actions and
