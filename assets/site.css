@@ -55,6 +55,7 @@ a:hover, a:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outl
 .menu a:hover .v, .menu a:focus-visible .v, .menu a:hover .k, .menu a:focus-visible .k { color: var(--sel-fg); }
 .menu p { margin: 6px 0 0 44px; color: var(--soft); font-size: 14px; }
 .menu p.t { color: var(--dim); font-size: 12.5px; letter-spacing: .06em; }
+.oct { width: 1.1em; height: 1.1em; fill: currentColor; vertical-align: -.2em; }
 .sys { border-collapse: collapse; font-size: 14px; }
 .sys td { padding: 2px 24px 2px 0; vertical-align: top; } .sys td:first-child { color: var(--hi); white-space: nowrap; }
 /* terminal-style home panels */
@@ -82,7 +83,7 @@ a:hover, a:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outl
 .lead { font-size: 16px; color: var(--soft); }
 .project-badge { display: inline-block; font: 22px/1 var(--pixel); color: var(--hi); border: 2px solid var(--hi); padding: 6px 10px; margin-bottom: 14px; }
 .meta { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 13.5px; text-transform: uppercase; }
-.meta span { color: var(--hi); } .meta span::after { content: ":"; margin-right: 4px; }
+.meta span { color: var(--hi); } .meta b { font-weight: inherit; } .meta span::after { content: ":"; margin-right: 4px; }
 .tags .tag { color: var(--dim); margin-right: 12px; font-size: 13px; text-transform: uppercase; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 0; }
 .btn { border: 2px solid var(--hi); color: var(--hi); padding: 4px 12px; text-transform: uppercase; font-size: 14px; }

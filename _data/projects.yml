@@ -7,6 +7,7 @@
   kind: IntelliJ plugin
   tags: [java, intellij, bigquery, gcp]
   version: v0.2.24
+  version_source: jetbrains/plugin/v/30020
   license: Apache-2.0
   category: DeveloperApplication
   os: Windows, macOS, Linux (IntelliJ IDEA 2026.2+)
@@ -49,6 +50,7 @@
   kind: Linux desktop app
   tags: [python, qt, linux, usb]
   version: v2.1.1
+  version_source: github/v/release/rejeb/linux-thermalright-lcd-control
   license: Apache-2.0
   category: UtilitiesApplication
   os: Linux (Fedora, Debian, Ubuntu)
@@ -83,6 +85,7 @@
   kind: Spark connector
   tags: [scala, spark, netcdf, s3]
   version: v1.0.0
+  version_source: maven-central/v/io.github.rejeb/netcdf-spark-parser_2.13
   license: Apache-2.0
   category: DeveloperApplication
   os: Any (JVM, Apache Spark 3.5)

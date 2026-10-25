@@ -10,7 +10,7 @@ layout: default
     <p class="lead">{{ p.tagline }}</p>
     <ul class="meta">
       <li><span>kind</span> {{ p.kind }}</li>
-      <li><span>version</span> {{ p.version }}</li>
+      <li><span>version</span> <b data-version="{{ p.version_source }}">{{ p.version }}</b></li>
       <li><span>license</span> {{ p.license }}</li>
     </ul>
     <p class="tags">{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
