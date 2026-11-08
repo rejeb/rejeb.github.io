@@ -81,6 +81,9 @@ a:hover, a:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outl
 .crumb a { color: var(--soft); }
 .page h1 { font: clamp(40px, 7vw, 58px)/1 var(--pixel); letter-spacing: .03em; text-transform: uppercase; margin: 0 0 12px; color: var(--fg); }
 .lead { font-size: 16px; color: var(--soft); }
+/* logo sized in em and centred on the capitals of the first line, whatever the title's size or number of lines */
+.with-logo { display: flex; align-items: baseline; gap: .3em; }
+.title-logo { flex: none; align-self: flex-start; width: 1em; height: 1em; margin-top: .02em; }
 .project-badge { display: inline-block; font: 22px/1 var(--pixel); color: var(--hi); border: 2px solid var(--hi); padding: 6px 10px; margin-bottom: 14px; }
 .meta { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 13.5px; text-transform: uppercase; }
 .meta span { color: var(--hi); } .meta b { font-weight: inherit; } .meta span::after { content: ":"; margin-right: 4px; }
@@ -126,11 +129,18 @@ a:hover, a:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outl
     linear-gradient(var(--b), var(--b)) bottom left / 26px 2px no-repeat, linear-gradient(var(--b), var(--b)) bottom left / 2px 26px no-repeat,
     linear-gradient(var(--b), var(--b)) bottom right / 26px 2px no-repeat, linear-gradient(var(--b), var(--b)) bottom right / 2px 26px no-repeat; }
 .hud img { display: block; width: 100%; height: auto; outline: 1px solid color-mix(in srgb, var(--line) 45%, transparent); }
+.hud video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; outline: 1px solid color-mix(in srgb, var(--line) 45%, transparent); }
 .shot-open { cursor: zoom-in; }
 .shot-open:hover::before, .shot-open:focus-visible::before { inset: -5px; }
 .shot-open:focus-visible { outline: none; }
 .shot-zoom { position: absolute; right: 18px; bottom: 18px; font: 12px var(--mono); letter-spacing: .08em; color: var(--sel-fg); background: var(--sel-bg); padding: 2px 8px; opacity: 0; transition: opacity .2s; }
 .shot-open:hover .shot-zoom, .shot-open:focus-visible .shot-zoom { opacity: 1; }
+.shot-zoom { pointer-events: none; }
+.shot-replay, .shot-open.ended .shot-zoom { display: none; }
+.shot-open.ended .shot-replay { display: block; }
+.shot-open.ended { cursor: pointer; }
+.viewer video { cursor: pointer; }
+.viewer .hud:hover .shot-zoom { opacity: 1; }
 .hud { --b: var(--line); }
 .hud::before { filter: drop-shadow(0 0 4px var(--b)) drop-shadow(0 0 8px var(--b)); }
 
@@ -140,7 +150,8 @@ a:hover, a:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outl
 .viewer-bar .shot-cap { color: var(--hi); margin: 0; }
 .viewer-close { font: 13px var(--mono); letter-spacing: .08em; color: var(--soft); background: none; border: 0; cursor: pointer; padding: 2px 6px; }
 .viewer-close:hover, .viewer-close:focus-visible { background: var(--sel-bg); color: var(--sel-fg); outline: none; }
-.viewer img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; background: #000; }
+.viewer img, .viewer video { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; background: #000; }
+.viewer [hidden] { display: none; }
 @media (max-width: 640px) { .gallery { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---- usability fixes ---- */
@@ -180,3 +191,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--hi); outline-of
 .prose blockquote { margin: 16px 0; padding: 8px 14px; border-left: 3px solid var(--hi); background: var(--bar); }
 .prose blockquote p { margin: 0; }
 .prose .shot { margin: 18px 0; }
+.prose .shot-cap { white-space: normal; line-height: 1.4; }

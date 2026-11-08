@@ -9,6 +9,8 @@ image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
 
+*Effective date: October 27, 2026*
+
 This Privacy Policy explains how **Google Cloud Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
 stores and shares your data, including data received from Google APIs. The plugin is open source:
 its code is available on [GitHub](https://github.com/rejeb/google-cloud-dataform-plugin).
@@ -29,8 +31,12 @@ In this policy:
 - The plugin exchanges data directly with Google. Some requests are sent automatically while you
   work, such as BigQuery dry runs of the SQL compiled from your project.
 - The plugin also contacts the npm registry to look up and install Dataform packages.
+- When you clone a repository from its Git remote, or view that remote's main branch in the tool
+  window, the IDE's Git plugin connects to your Git provider with your own Git credentials.
 - Your refresh token and email address are stored in the IDE password store.
-- The plugin contains no telemetry, analytics or crash reporting.
+- The plugin has no telemetry, analytics or crash reporting of its own. Error and freeze reports are
+  a feature of the IDE, sent only if you submit them or turned on automatic reports. They reach
+  JetBrains and the developer. See [Error and freeze reports](#error-and-freeze-reports).
 - Signing out deletes your credentials from your computer. It does not revoke the plugin's access
   to your Google account or delete other data. See
   [Data retention and deletion](#data-retention-and-deletion).
@@ -44,7 +50,7 @@ When you sign in, the plugin requests these OAuth scopes:
 |---|---|
 | `openid` | Part of Google's sign-in protocol, used together with `email`. |
 | `email` | To read your account email address, which the plugin shows as the signed-in account and uses as the author of the commits you make in a Dataform workspace. |
-| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs the plugin uses: Dataform (repositories, workspaces, files, commits, compilation results and workflow invocations), BigQuery (dry runs, queries, datasets and job details) and IAM (listing the service accounts a repository can run with). |
+| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs the plugin uses: Dataform (repositories, workspaces, files, commits, compilation results and workflow invocations), BigQuery (dry runs, queries, datasets and job details), IAM and Cloud Resource Manager (listing the service accounts a repository can run with, Google-provided service agents included) and Cloud Billing (the public BigQuery price list). |
 
 The plugin uses these scopes only for the features described in this policy, and what it can do
 in Google Cloud is limited by the IAM permissions of your account. It uses only the credential
@@ -58,7 +64,9 @@ The plugin uses your credentials only to authorize its requests to Google APIs.
 **On your computer.** The plugin compiles your project and evaluates its JavaScript locally, with
 the Dataform CLI and Node.js, and runs `sqlfluff` if you configure it for formatting. Editor
 features such as completion, navigation, lineage and the compiled preview use this local result
-and cached table schemas.
+and cached table schemas. The plugin also reads the project's Git configuration to tell whether the
+project is a clone of the repository's Git remote, and shows that remote's main branch from your
+local clone.
 
 **In Google Cloud.** The following features send data to Google Cloud, which processes it there:
 
@@ -75,13 +83,20 @@ and cached table schemas.
 - **Repositories and workspaces.** When you ask it to, the plugin pulls workspace files into your
   project, compares them with your local files, creates repositories and workspaces, and commits
   workspace changes with your email address as the author (or your operating system user name if
-  the email address cannot be read). When you configure or select a repository, it lists the
-  repository's workspaces and files and the service accounts of its Google Cloud project. It may
-  also list the workspace files in the background when you open the project.
+  the email address cannot be read). When you configure or select a repository, it reads the
+  repository's settings, such as its Git remote, and lists the repository's workspaces and files and
+  the service accounts of its Google Cloud project. To include the Google-provided service agents,
+  it reads the project's IAM policy and keeps only its service accounts, in memory; the other
+  members of the policy, such as email addresses, are discarded. It may also list the workspace
+  files in the background when you open the project. In the clone dialog, it lists the
+  repositories of the Google Cloud project and location you enter.
 - **Workflow runs.** When you run a workflow, the plugin first uploads your project files as
   described above. Dataform then compiles the workspace and runs the selected actions in BigQuery,
   under the identity configured for the repository, such as its service account. The plugin reads
   the progress of the run and its BigQuery job details to show them in the IDE.
+- **BigQuery prices.** While you are signed in and the list price option is selected, the plugin
+  downloads the public BigQuery price list from the Cloud Billing API, in the currency you chose, and
+  refreshes it about once a day. The request carries your access token and no project content.
 
 Google processes this data under the terms of your Google Cloud account and the
 [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). Your sign-in is
@@ -97,8 +112,8 @@ invocations or commits.
 - **Credentials.** The refresh token and your email address are stored in JetBrains Password Safe.
   Depending on your
   [IDE settings](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html),
-  it keeps them in the native keychain of macOS or Linux, in a KeePass file, or only in memory
-  until the IDE restarts. Access tokens are kept only in memory. The plugin does not write
+  it keeps them in the operating system's native keychain where available, in a KeePass file, or only
+  in memory until the IDE restarts. Access tokens are kept only in memory. The plugin does not write
   credentials to project or settings files.
 - **Connections.** The plugin connects to Google and to `registry.npmjs.org` over HTTPS.
 - **Local files.** Caches, settings and logs are ordinary, unencrypted files, protected by your
@@ -108,12 +123,15 @@ invocations or commits.
 
 ## Who receives data
 
-The plugin does not sell your data and does not send Google user data, credentials or project
+The plugin does not sell your data and does not itself send Google user data, credentials or project
 content to the developer. It exchanges Google user data only with Google:
 
 | Recipient | When | What is sent |
 |---|---|---|
-| **Google** (OAuth, Dataform, BigQuery and IAM APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
+| **Google** (OAuth, Dataform, BigQuery, IAM, Cloud Resource Manager and Cloud Billing APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
+
+The IDE's error and freeze reports can reach JetBrains and the developer: see
+[Error and freeze reports](#error-and-freeze-reports).
 
 To compile your project, the plugin runs the Dataform CLI (`dataform compile`). During compilation,
 the Dataform CLI may download packages from npm, such as the Dataform core version set in
@@ -121,13 +139,19 @@ the Dataform CLI may download packages from npm, such as the Dataform core versi
 behavior and is not handled by the plugin. What the Dataform CLI and the packages it installs do is
 not covered by this policy.
 
-Commit and push actions go through the Dataform API. If you linked your Dataform repository to a
-remote Git repository, Google Dataform pushes the commits to it. The plugin never connects to your
-Git provider.
+Commit and push actions in the Dataform tool window go through the Dataform API. If you linked your
+Dataform repository to a remote Git repository, Google Dataform pushes the commits to it.
+
+The plugin connects to your Git provider in two cases only, through the IDE's Git plugin and with the
+Git credentials set up on your computer, never your Google credentials: when you clone a Dataform
+repository from its Git remote, and, in a project cloned from it, to fetch that remote's default
+branch each time the tool window shows it with no workspace selected. Your Git provider's own terms
+apply to these requests.
 
 ## Data retention and deletion
 
-The developer holds no copy of your data. On your computer, the plugin keeps data in these places
+Apart from the [error and freeze reports](#error-and-freeze-reports) it can read on JetBrains
+Marketplace, the developer holds no copy of your data. On your computer, the plugin keeps data in these places
 (the IDE directories are described in
 [Directories used by the IDE](https://www.jetbrains.com/help/idea/directories-used-by-the-ide-to-store-settings-caches-plugins-and-logs.html)):
 
@@ -136,6 +160,7 @@ The developer holds no copy of your data. On your computer, the plugin keeps dat
 | Refresh token and account email address | Password Safe | You sign out, or the IDE restarts if Password Safe does not save passwords |
 | Access tokens | Memory | They expire (after about an hour), you sign out, or the IDE closes |
 | Table schemas from dry runs, the latest compilation result (including compiled SQL) and the list of remote workspace files | `cache-state.xml`, in the project's folder under `projects` in the IDE system directory | You delete the file while the IDE is closed |
+| BigQuery price list | `dataformBigQueryPrices.xml`, under `options` in the IDE configuration directory | You delete the file while the IDE is closed |
 | Query results | Memory | You close the result or the project |
 | Repository settings (Google Cloud project, location, repository, service account and workspace) | `.idea/dataform-gcp-repository-setting.xml` in your project, shared if you commit `.idea` | You remove the repository with **Manage Repositories** or delete the file |
 | Files pulled from a Dataform workspace | Your project | You delete them |
@@ -164,6 +189,37 @@ The plugin's use and transfer of information received from Google APIs adheres t
 [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
 including the
 [Limited Use requirements](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes).
+
+## Error and freeze reports
+
+Error and freeze reporting is a feature of the IDE, provided by JetBrains. The plugin contains no
+reporting code of its own: it only registers JetBrains' standard reporter, so that reports about the
+plugin can reach its page on JetBrains Marketplace.
+
+A report is sent in two cases only:
+
+- **You submit it.** When the IDE shows an error or a slowdown notice for the plugin, you can review
+  the report and choose to send it.
+- **You turned on automatic reports.** With **Send error reports to JetBrains automatically**, under
+  **Settings ▸ Appearance & Behavior ▸ System Settings ▸ Data Sharing**, the IDE sends reports without
+  asking. Turn this option off to stop it.
+
+A report contains your hardware and software configuration, product information such as the IDE and
+plugin versions, and the error details: the error message, stack trace, thread dumps and any
+description you add. A freeze report can also include a CPU snapshot. JetBrains warns that these
+reports can include code fragments. They can also include file paths, SQL and the names of Google
+Cloud resources, when an error message or a thread dump mentions them.
+
+Reports go to JetBrains and to the developer, who reads them on the plugin's page on JetBrains
+Marketplace and uses them only to diagnose and fix problems in the plugin. If a report contains
+personal data, that data is shared with both.
+
+JetBrains handles reports under its
+[Exception Analyzer Agreement](https://www.jetbrains.com/legal/agreements/exception_analyzer.html) and
+[Privacy Policy](https://www.jetbrains.com/legal/docs/privacy/privacy/). These do not cover the
+developer: JetBrains states that it is not responsible for third-party plugins and their vendors,
+including how they process personal data. The developer's use of reports is covered by this policy.
+The plugin does not control how long JetBrains keeps them.
 
 ## JetBrains
 

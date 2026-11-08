@@ -1,0 +1,15 @@
+{%- comment -%} A short silent screen recording in a HUD frame (corner brackets + figure label), with no player controls: it plays when scrolled into view and
+stops at its end. A click enlarges it in the viewer, or replays it once it has ended. Params: src (.mp4), caption, index, poster (defaults to the .webp next to src).
+Rendered on one line so it can sit inside indented markdown (e.g. a list item). {%- endcomment -%}
+{%- assign poster = include.poster | default: include.src | replace: '.mp4', '.webp' -%}
+{%- capture fig -%}
+<figure class="shot">
+  <figcaption class="shot-cap"><span class="shot-idx">VID.{% if include.index < 10 %}0{% endif %}{{ include.index }}</span> // {{ include.caption }}</figcaption>
+  <button class="hud shot-open" data-clip data-caption="{{ include.caption }}" aria-label="Enlarge: {{ include.caption }}">
+    <video muted playsinline preload="none" tabindex="-1" poster="{{ poster | relative_url }}" src="{{ include.src | relative_url }}"></video>
+    <span class="shot-zoom" aria-hidden="true">[ + ] ZOOM</span>
+    <span class="shot-zoom shot-replay" aria-hidden="true">[ ↻ ] REPLAY</span>
+  </button>
+</figure>
+{%- endcapture -%}
+{{ fig | strip_newlines }}

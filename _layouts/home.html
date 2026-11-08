@@ -48,7 +48,7 @@ layout: default
       <li>
         <a href="{{ p.url | relative_url }}" data-key="{{ forloop.index }}">
           <span class="k">[{{ forloop.index }}]</span>
-          <span class="n">{{ p.name | upcase }}</span>
+          <span class="n{% if p.logo %} with-logo{% endif %}">{% if p.logo %}<img class="title-logo" src="{{ p.logo | relative_url }}" alt="" width="34" height="34">{% endif %}{{ p.name | upcase }}</span>
           <span class="v" data-version="{{ p.version_source }}">{{ p.version }}</span>
         </a>
         <p>{{ p.tagline }}</p>

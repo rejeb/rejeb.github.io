@@ -37,7 +37,7 @@
   </footer>
   <dialog class="viewer" id="viewer">
     <div class="viewer-bar"><span class="shot-cap" id="viewer-title"></span><button class="viewer-close" data-close aria-label="Close">[ ESC ] CLOSE</button></div>
-    <div class="hud"><img id="viewer-img" alt=""></div>
+    <div class="hud"><img id="viewer-img" alt=""><video id="viewer-clip" muted playsinline hidden></video><span class="shot-zoom" id="viewer-hint" aria-hidden="true" hidden></span></div>
   </dialog>
   <script src="{{ '/assets/site.js' | relative_url }}?v={{ v }}"></script>
 </body>

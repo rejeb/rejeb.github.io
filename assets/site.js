@@ -1,6 +1,6 @@
 // Boot sequence on the home page (once per session, any key or tap skips it) and keyboard
 // shortcuts: digits open programs, H goes home, G opens GitHub, Esc goes back;
-// screenshot viewer on project pages; live versions, stars and forks.
+// screenshot and clip viewer; live versions, stars and forks.
 (function () {
   const boot = document.querySelector('[data-boot]');
   const screen = document.querySelector('[data-after-boot]');
@@ -58,18 +58,74 @@
       .catch(() => {});
   });
 
-  // Screenshot viewer.
+  // Screenshot and clip viewer.
   const viewer = document.getElementById('viewer');
+  const viewerImg = document.getElementById('viewer-img');
+  const viewerClip = document.getElementById('viewer-clip');
+  const viewerHint = document.getElementById('viewer-hint');
+  const show = (caption, isClip) => {
+    viewerImg.hidden = isClip;
+    viewerClip.hidden = !isClip;
+    viewerHint.hidden = !isClip;
+    viewerImg.alt = isClip ? '' : caption;
+    document.getElementById('viewer-title').textContent = caption;
+    viewer.showModal();
+  };
+
+  // Clips play once, on their own, when half visible; they pause out of view and behind the
+  // viewer, and stay stopped once ended. With reduced motion they only play when enlarged.
+  const clips = [...document.querySelectorAll('[data-clip] video')];
+  const inView = new Set();
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const resume = () => {
+    if (calm || viewer.open) return;
+    inView.forEach(v => { if (!v.ended) v.play().catch(() => {}); });
+  };
+  const watcher = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { inView.add(target); } else { inView.delete(target); target.pause(); }
+    });
+    resume();
+  }, { threshold: 0.5 });
+  clips.forEach(v => watcher.observe(v));
+  document.addEventListener('ended', e => e.target.closest('.hud').classList.add('ended'), true);
+  document.addEventListener('play', e => e.target.closest('.hud').classList.remove('ended'), true);
+
   document.addEventListener('click', e => {
-    const b = e.target.closest('[data-view]');
-    if (b) {
-      document.getElementById('viewer-img').src = b.dataset.view;
-      document.getElementById('viewer-img').alt = b.dataset.caption;
-      document.getElementById('viewer-title').textContent = b.dataset.caption;
-      viewer.showModal();
+    const shot = e.target.closest('[data-view]');
+    if (shot) {
+      viewerImg.src = shot.dataset.view;
+      show(shot.dataset.caption, false);
+      return;
+    }
+    const clip = e.target.closest('[data-clip]');
+    if (clip) {
+      const v = clip.querySelector('video');
+      if (v.ended) { v.play(); return; }
+      clips.forEach(c => c.pause());
+      viewerClip.poster = v.poster;
+      viewerClip.src = v.src;
+      show(clip.dataset.caption, true);
+      viewerClip.play().catch(() => {});
+      return;
+    }
+    if (e.target === viewerClip) {
+      if (viewerClip.paused) { viewerClip.play(); } else { viewerClip.pause(); }
       return;
     }
     if (e.target.closest('[data-close]') || e.target === viewer) viewer.close();
+  });
+  // In the frame a click stops the clip, then resumes it, or replays it once it has ended.
+  const hint = text => () => { viewerHint.textContent = text; };
+  viewerClip.addEventListener('play', hint('[ ■ ] STOP'));
+  viewerClip.addEventListener('pause', hint('[ ▶ ] RESUME'));
+  viewerClip.addEventListener('ended', hint('[ ↻ ] REPLAY'));
+  viewer.addEventListener('close', () => {
+    viewerClip.pause();
+    viewerClip.removeAttribute('src');
+    viewerClip.load();
+    viewerClip.closest('.hud').classList.remove('ended');
+    resume();
   });
 
   document.addEventListener('keydown', e => {

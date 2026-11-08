@@ -1,0 +1,4 @@
+{%- comment -%} The page's h1, led by the program's logo on the pages of a program that has one. Params: text. {%- endcomment -%}
+{%- assign title_slug = page.url | remove_first: '/' | split: '/' | first -%}
+{%- assign title_proj = site.data.projects | where: 'slug', title_slug | first -%}
+<h1{% if title_proj.logo %} class="with-logo"{% endif %}>{% if title_proj.logo %}<img class="title-logo" src="{{ title_proj.logo | relative_url }}" alt="" width="34" height="34">{% endif %}{{ include.text }}</h1>

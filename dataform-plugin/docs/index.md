@@ -15,15 +15,18 @@ debugging Google Cloud Dataform SQLX pipelines. It understands the SQL, JavaScri
 blocks of a SQLX file, compiles the project in the background, resolves table schemas through
 BigQuery dry runs, and talks to your Dataform repositories in Google Cloud.
 
-{% include window.html src="/assets/img/df-shot3.webp" caption="SQLX editor with the file lineage preview" index=1 %}
+{% include window.html src="/assets/img/dataform/preview-assertions.webp" caption="SQLX editor with the compiled preview" index=1 %}
 
 ## Chapters
 
 - [Installation]({{ '/dataform-plugin/docs/installation' | relative_url }}): requirements and setup.
 - [Project setup]({{ '/dataform-plugin/docs/project-setup' | relative_url }}): create a Dataform
-  project with the New Project wizard, or open an existing one.
+  project with the New Project wizard, open an existing one, or open a Dataform repository from
+  Google Cloud.
 - [Configuration]({{ '/dataform-plugin/docs/configuration' | relative_url }}): Node.js, the Dataform
   CLI and plugin settings, Google Cloud sign-in, Dataform repositories and service accounts.
+- [Release notes]({{ '/dataform-plugin/docs/release-notes' | relative_url }}): what changed in each
+  version.
 
 ## Features
 

@@ -2,15 +2,16 @@
   dir: dataform-intellij-plugin
   name: Google Cloud Dataform Plugin for IntelliJ
   short: DF
+  logo: /assets/img/dataform/logo.svg
   color: "#6366f1"
   tagline: Write, navigate, run and debug Dataform SQLX pipelines without leaving IntelliJ IDEA.
   kind: IntelliJ plugin
   tags: [java, intellij, bigquery, gcp]
-  version: v0.2.24
+  version: v1.0.0
   version_source: jetbrains/plugin/v/30020
   license: Apache-2.0
   category: DeveloperApplication
-  os: Windows, macOS, Linux (IntelliJ IDEA 2026.2+)
+  os: Windows, Linux (IntelliJ IDEA Ultimate 2026.2+)
   language: Java
   image: /assets/img/og/og-dataform-plugin.png
   url: /dataform-plugin
@@ -21,16 +22,20 @@
     - label: JetBrains Marketplace
       url: https://plugins.jetbrains.com/plugin/30020
   screenshots:
-    - src: /assets/img/df-shot1.webp
-      caption: Project lineage graph
-    - src: /assets/img/df-shot3.webp
-      caption: SQLX editor with the file lineage preview
-    - src: /assets/img/df-shot5.webp
-      caption: Compiled query preview
-    - src: /assets/img/df-shot7.webp
-      caption: Workflow execution with BigQuery job details
-    - src: /assets/img/df-shot11.webp
-      caption: Dataform workflow run configuration
+    - src: /assets/img/dataform/lineage-selection.webp
+      caption: Project lineage with a selected action
+    - src: /assets/img/dataform/preview-assertions.webp
+      caption: Compiled preview with assertions and cost
+    - src: /assets/img/dataform/errors-inline.webp
+      caption: BigQuery dry-run errors in place
+    - src: /assets/img/dataform/run-jobs.webp
+      caption: Run console with the BigQuery jobs timeline
+    - src: /assets/img/dataform/impact-analysis.webp
+      caption: Column impact analysis on save
+    - src: /assets/img/dataform/panel-changes.webp
+      caption: Dataform Tools tool window
+    - src: /assets/img/dataform/unit-test-failed.webp
+      caption: Unit tests in the IDE test runner
   snippet_file: users.sqlx
   snippet: |
     config {
@@ -45,6 +50,7 @@
   dir: linux-thermalright-lcd-control
   name: Thermalright LCD Control For Linux
   short: TR
+  logo: /assets/img/tr-logo.png
   color: "#e11d48"
   tagline: Drive Thermalright cooler LCD screens and RGB LEDs on Linux, with themes, widgets and live hardware metrics.
   kind: Linux desktop app

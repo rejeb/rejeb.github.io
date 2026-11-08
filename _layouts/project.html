@@ -5,8 +5,8 @@ layout: default
 <article class="page project">
   <header class="page-head">
     <p class="crumb">{% include crumb.html %}</p>
-    <div class="project-badge">{{ p.short }}</div>
-    <h1>{{ p.name }}</h1>
+    {% unless p.logo %}<div class="project-badge">{{ p.short }}</div>{% endunless %}
+    {% include page-title.html text=p.name %}
     <p class="lead">{{ p.tagline }}</p>
     <ul class="meta">
       <li><span>kind</span> {{ p.kind }}</li>

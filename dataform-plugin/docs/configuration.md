@@ -14,8 +14,9 @@ Configuration happens in two places:
 
 - [Plugin settings](#plugin-settings): Node.js, the Dataform CLI and Core, and the editor options.
   They are needed to compile the project, so set them up first.
-- [Google Cloud](#google-cloud-sign-in): sign-in and Dataform repositories, needed by the features
-  that call Google Cloud (BigQuery dry runs and schemas, workflow runs, query execution, workspaces).
+- [Google Cloud](#google-cloud-prerequisites): the project's prerequisites, sign-in and Dataform
+  repositories, needed by the features that call Google Cloud (BigQuery dry runs and schemas, workflow
+  runs, query execution, workspaces).
 
 ## Plugin settings
 
@@ -41,7 +42,7 @@ This is the simplest way: IntelliJ IDEA downloads Node.js, with `npm`, and confi
 
 If Node.js is already installed on your computer, or you prefer to install it yourself:
 
-- **Windows and macOS**: download the installer from [nodejs.org](https://nodejs.org/) and run it.
+- **Windows**: download the installer from [nodejs.org](https://nodejs.org/) and run it.
 - **Linux**: install the `nodejs` and `npm` packages of your distribution, for example
   `sudo apt install nodejs npm` on Debian and Ubuntu or `sudo dnf install nodejs npm` on Fedora,
   or use a version manager such as [nvm](https://github.com/nvm-sh/nvm).
@@ -86,32 +87,57 @@ The other options on **Settings ▸ Tools ▸ Dataform**:
 | Setting | Description |
 |---|---|
 | **Dataform Core directory** | Where `@dataform/core` is installed, used to compile the project. |
-| **SQLFluff executable** | Path to `sqlfluff`, to format SQLX files with SQLFluff. |
-| **SQLFluff config file** | Optional `.sqlfluff` configuration file. |
-| **SQLFluff extra args** | Extra command-line arguments passed to SQLFluff. |
+| **SQLFluff formatter ▸ Executable** | Path to `sqlfluff`, to format SQLX files with SQLFluff. |
+| **SQLFluff formatter ▸ Config file** | Optional `.sqlfluff` configuration file, passed as `--config`. |
+| **SQLFluff formatter ▸ Extra arguments** | Added after the other arguments, separated by spaces. |
 | **Fold Dataform expressions to their evaluated value** | Shows `${...}` expressions as their value. Values are computed by running your project's JavaScript with the configured Node.js interpreter, so you can turn this off. |
-| **Show Dataform compilation and BigQuery errors inline in the editor** | Underlines compilation and dry-run errors on the tokens they refer to. |
+| **Show Dataform compilation and BigQuery errors inline in the editor** | Shows compilation and dry-run errors on the tokens they refer to. |
+| **BigQuery cost** | Whether the compiled preview shows estimated costs, how bytes are priced (list price per location, a fixed price per TiB, or capacity pricing) and the currency. See [BigQuery cost]({{ '/dataform-plugin/features/bigquery-cost' | relative_url }}#settings). |
+
+{% include window.html src="/assets/img/dataform/settings-dataform.webp" caption="The Dataform settings: CLI and Core, SQLFluff, Editor and BigQuery cost" index=1 %}
 
 The project is recompiled when you stop typing, when you save, and after external changes such as a
 checkout or a pull, so the compiled graph, previews and lineage stay up to date.
 
+## Google Cloud prerequisites
+
+Features that call Google Cloud need a project with the Dataform API and the BigQuery API enabled.
+
+The service account Dataform uses in that project needs these roles:
+
+| Role | Role ID |
+|---|---|
+| BigQuery Data Editor | `roles/bigquery.dataEditor` |
+| BigQuery Data Viewer | `roles/bigquery.dataViewer` |
+| BigQuery Job User | `roles/bigquery.jobUser` |
+| Dataform Service Agent | `roles/dataform.serviceAgent` |
+| Service Account Token Creator | `roles/iam.serviceAccountTokenCreator` |
+| Service Account User | `roles/iam.serviceAccountUser` |
+
 ## Google Cloud sign-in
 
-Language features (highlighting, completion, navigation, local compilation) work without Google Cloud.
+Highlighting, most completion, navigation and local compilation work without Google Cloud. Column
+completion and the column features use table schemas from BigQuery dry runs, so they need the sign-in.
+
 Everything below is done from the **Dataform Tools** tool window, on the right side of the IDE. It is
 available in projects that contain a Dataform project.
 
-{% include window.html src="/assets/img/df-shot7.webp" caption="The Dataform Tools tool window with a repository and a workspace selected" index=1 %}
+{% include window.html src="/assets/img/dataform/panel-workspaces.webp" caption="The Dataform Tools tool window with a repository and a workspace selected" index=2 %}
 
 1. Open the **Dataform Tools** tool window.
-2. Click **Sign In to Google Cloud** in its title bar. Your browser opens the Google sign-in page.
+2. Click **Sign in to Google Cloud** in the tool window, or **Sign In to Google Cloud** in its
+   options menu (**⋮**). Your browser opens the Google sign-in page.
 3. Choose your account and accept the requested access. The browser then shows a confirmation page
    and you can return to the IDE.
 
+{% include window.html src="/assets/img/dataform/auth-signin-panel.webp" caption="The Dataform Tools tool window before signing in" index=3 width=530 %}
+
 The credential is stored in the IDE password store and shared by all your projects and windows, so
-you sign in once. When the session expires, a banner at the top of the editor asks you to sign in
-again. The same title-bar button shows **Sign Out of Google Cloud (your email)** while you are signed
-in.
+you sign in once. When a feature needs Google Cloud and you are not signed in, or your session has
+expired, a banner at the top of the editor asks you to sign in. While you are signed in, the options
+menu shows **Sign Out of Google Cloud**.
+
+{% include window.html src="/assets/img/dataform/auth-banner.webp" caption="The banner asking you to sign in, above the editor" index=4 %}
 
 Your Google account is used only to call Google Cloud on your behalf. See
 [Why the plugin asks you to sign in with Google]({{ '/dataform-plugin' | relative_url }}) and the
@@ -123,23 +149,27 @@ A repository entry tells the plugin which Dataform repository in Google Cloud th
 belongs to. You can declare several, for example one per environment, and switch between them.
 
 1. Open the **Dataform Tools** tool window.
-2. Click **Add a Dataform repository** (shown while none is configured), or the **Manage
-   Repositories** button (gear icon) in the title bar.
+2. Click **Add repository…** (shown while none is configured), or **Manage Repositories…** in the
+   repository picker or the options menu (**⋮**).
 3. In the **Manage Dataform Repositories** dialog, click **+** and fill the form:
 
-| Field | Description |
-|---|---|
-| **Label** | The name shown in the repository selector, for example `dev` or `prod`. |
-| **GCP Project ID** | The Google Cloud project that hosts the Dataform repository. |
-| **Repository ID** | The name of the Dataform repository. |
-| **Location** | The region of the repository, for example `europe-west1`. |
-| **Service Account** | Optional. The service account workflow runs use. The list is filled with the service accounts of the project. |
+   {% include video.html src="/assets/video/dataform/manage-repositories.mp4" caption="The Location and Service Account fields filter their list as you type" index=1 %}
+
+   | Field | Description |
+   |---|---|
+   | **Label** | The name shown in the repository picker, for example `dev` or `prod`. |
+   | **GCP Project ID** | The Google Cloud project that hosts the Dataform repository. |
+   | **Repository ID** | The name of the Dataform repository. |
+   | **Location** | The region of the repository, for example `europe-west1`. Type to filter the list. |
+   | **Service Account** | Optional. The service account workflow runs use. The list is filled with the service accounts of the project, then the other ones granted a role in it, such as the Google-provided Dataform service agent; type to filter it. |
 
 4. Click **Test Connection** to check that the repository is reachable with your account.
    The result is shown next to the button.
-5. If the repository does not exist yet, click **Create in GCP** to create it in the project and
-   location you entered.
+5. If the repository does not exist yet, click **Create in Google Cloud** to create it in the
+   project and location you entered.
 6. Click **Save**.
+
+{% include window.html src="/assets/img/dataform/manage-repositories.webp" caption="The form of a repository in Manage Dataform Repositories" index=5 %}
 
 The dialog also lets you **copy** an entry (handy when only the project or location changes) and
 **remove** one. Label, project ID, repository ID and location are required.
@@ -150,13 +180,15 @@ credential is never written there.
 ### Service account
 
 When a service account is set, workflow invocations started from the IDE run with that identity,
-the same way a release or workflow configuration in Google Cloud does. Your own account needs
-permission to act as that service account (`roles/iam.serviceAccountUser`). Leave the field empty to
-let Dataform use the repository's default identity.
+the same way a release or workflow configuration in Google Cloud does. **Create in Google Cloud** also
+sets it on the new repository. Your own account needs permission to act as that service account
+(`roles/iam.serviceAccountUser`), and the service account needs the roles listed in
+[Google Cloud prerequisites](#google-cloud-prerequisites). Leave the field empty to let Dataform use
+the repository's default identity.
 
 ### Active repository and workspace
 
-The repository chosen in the **Repository** selector at the top of the tool window is the active
+The repository chosen in the repository picker at the top of the tool window is the active
 one: compilation, dry runs, workflow runs and the [Dataform panel]({{ '/dataform-plugin/features/dataform-panel' | relative_url }})
-all use it. The **Workspace** selector below it picks the Dataform workspace used for pull, push,
+all use it. The workspace picker next to it picks the Dataform workspace used for pull, push,
 commits and runs. Both choices are remembered per project.

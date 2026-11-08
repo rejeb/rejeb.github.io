@@ -5,8 +5,9 @@ project: dataform-plugin
 title: Features · Google Cloud Dataform Plugin for IntelliJ
 heading: Features
 description: >-
-  Features of Google Cloud Dataform Plugin for IntelliJ: SQLX editing, compiled preview, lineage, the Dataform
-  panel, workflow runs, query execution, unit tests, formatting and project setup.
+  Features of Google Cloud Dataform Plugin for IntelliJ: SQLX editing, compiled preview, errors and build,
+  column refactoring, lineage, the Dataform panel, workflow runs, query execution, BigQuery cost, unit tests
+  and formatting.
 nav_order: 1
 permalink: /dataform-plugin/features
 ---

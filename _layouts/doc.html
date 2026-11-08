@@ -7,7 +7,7 @@ layout: default
 <article class="page doc">
   <header class="page-head">
     <p class="crumb">{% include crumb.html %}</p>
-    <h1>{{ page.heading | default: page.title }}</h1>
+    {% assign title_text = page.heading | default: page.title %}{% include page-title.html text=title_text %}
     <p class="lead">{{ p.name }} · {{ section_name }}</p>
     <p class="actions">
       <a class="btn ghost" href="{{ p.url | relative_url }}">Program page</a>
