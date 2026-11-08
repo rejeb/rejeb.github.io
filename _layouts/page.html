@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{%- assign pg_slug = page.url | remove_first: '/' | split: '/' | first -%}
+{%- assign pg_slug = page.url | remove_first: '/' | split: '/' | first | default: '' -%}
 {%- assign pg_proj = site.data.projects | where: 'slug', pg_slug | first -%}
 <section class="tile focus page-tile" aria-labelledby="pg-crumb">
   <div class="tile-hd"><p id="pg-crumb" class="crumb">{% include crumb.html %}</p>{% if pg_proj %}<span>{{ pg_proj.ws | default: pg_proj.short | upcase }} · {{ pg_proj.license | upcase }}</span>{% endif %}</div>

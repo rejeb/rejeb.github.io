@@ -1,8 +1,8 @@
 <!doctype html>
 {%- comment -%} Build timestamp appended to asset URLs so each deploy bypasses browser caches. {%- endcomment -%}
 {%- assign v = site.time | date: "%s" -%}
-{%- comment -%} The program whose workspace is active: the first segment of the URL (none on the home page). {%- endcomment -%}
-{%- assign ws_slug = page.url | remove_first: '/' | split: '/' | first -%}
+{%- comment -%} The program whose workspace is active: the first segment of the URL (none on the home page). The default keeps the slug a string: Jekyll 3 (GitHub Pages) `where` returns the whole list for a nil value, which made the first program active on the home page. {%- endcomment -%}
+{%- assign ws_slug = page.url | remove_first: '/' | split: '/' | first | default: '' -%}
 {%- assign ws = site.data.projects | where: 'slug', ws_slug | first -%}
 {%- assign n = site.data.projects | size -%}
 <html lang="en" data-palette="wargames">

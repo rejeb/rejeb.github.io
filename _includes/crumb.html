@@ -1,6 +1,6 @@
 {%- comment -%} Shell-prompt breadcrumb: program pages live under /OPT/<DIR>, their docs under /USR/SHARE/DOC/<DIR>. {%- endcomment -%}
 {%- assign parts = page.url | remove_first: '/' | split: '/' -%}
-{%- assign slug = parts[0] -%}
+{%- assign slug = parts[0] | default: '' -%}
 {%- assign proj = site.data.projects | where: 'slug', slug | first -%}
 {%- assign label = proj.dir | default: slug -%}
 {%- if parts[1] == 'docs' -%}{%- assign root = '/USR/SHARE/DOC' -%}{%- assign acc = '/' | append: slug | append: '/docs' -%}{%- assign start = 2 -%}
