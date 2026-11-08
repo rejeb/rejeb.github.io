@@ -2,6 +2,16 @@
   dir: dataform-intellij-plugin
   name: Google Cloud Dataform Plugin for IntelliJ
   short: DF
+  ws: Dataform
+  install:
+    where: Settings ▸ Plugins
+    steps:
+      - In IntelliJ IDEA, open **Settings ▸ Plugins ▸ Marketplace**.
+      - Search for **Dataform** and install the plugin.
+      - Restart the IDE.
+    note: >-
+      Requires IntelliJ IDEA Ultimate 2026.2+, Node.js, and the Dataform CLI and Core, which the plugin can
+      install for you.
   logo: /assets/img/dataform/logo.svg
   color: "#6366f1"
   tagline: Write, navigate, run and debug Dataform SQLX pipelines without leaving IntelliJ IDEA.
@@ -50,6 +60,16 @@
   dir: linux-thermalright-lcd-control
   name: Thermalright LCD Control For Linux
   short: TR
+  ws: Thermalright
+  install:
+    where: DNF · APT · Tarball
+    steps:
+      - Add the openSUSE Build Service repository for your distribution.
+      - Install the `thermalright-lcd-control` package.
+      - Start **Thermalright LCD Control**. It then starts with your session, minimized to the tray.
+    note: >-
+      Packages for Fedora, Debian, Ubuntu and atomic distributions (Bazzite, Silverblue), plus a tarball for
+      any other distribution. The packages bundle their own Python runtime.
   logo: /assets/img/tr-logo.png
   color: "#e11d48"
   tagline: Drive Thermalright cooler LCD screens and RGB LEDs on Linux, with themes, widgets and live hardware metrics.
@@ -86,6 +106,13 @@
   dir: netcdf-spark-parser
   name: NetCDF Spark Parser
   short: NC
+  ws: NetCDF
+  install:
+    where: sbt · Maven Central
+    steps:
+      - 'Add `"io.github.rejeb" %% "netcdf-spark-parser" % "1.0.0"` to `libraryDependencies` in `build.sbt`.'
+      - 'Read a file with `spark.read.format("netcdf")`, a schema and the `path` option.'
+    note: Requires Java 11+, Apache Spark 3.5.x and Scala 2.12 or 2.13.
   color: "#0891b2"
   tagline: A Spark DataSource V2 connector that reads NetCDF scientific files as DataFrames, at scale.
   kind: Spark connector

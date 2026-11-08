@@ -80,3 +80,37 @@ but the plugin does not read their schema, so they show **No schema**.
 Schemas and costs are resolved through BigQuery dry runs, so they need the Google Cloud sign-in and
 an active repository (see [Configuration]({{ '/dataform-plugin/docs/configuration' | relative_url }})).
 Until then, the preview shows **Sign in to estimate**.
+
+## Lineage view
+
+The **Lineage** view draws the direct dependencies of the file: its actions, the actions they read
+from and the actions that read from them. The file's action is selected, with its edges in blue. The
+header names the file, and the status bar counts the nodes.
+
+- Double-click a node to open its file.
+- Right-click a node for **Open SQLX**, **Run**, **Focus on lineage** and **Copy name**.
+- **Layout direction** lays the graph out left to right or top to bottom.
+- **Open full lineage** opens the project lineage, with its filters, search and column lineage. See
+  [Lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}).
+
+The view needs a compiled project. Until then it reads **No lineage for this file. Compile the
+Dataform project.**
+
+{% include window.html src="/assets/img/dataform/preview-lineage.webp" caption="The direct dependencies of silver_customers.sqlx: bronze_customers upstream, five actions downstream" index=4 %}
+
+## Test view
+
+A unit test file (`type: "test"`) has a single **Test** view in place of **Query**, **Schema** and
+**Lineage**:
+
+- **Test query**: the query of the tested dataset run on your input rows, each `ref()` to an input
+  replaced by the `SELECT` of its input block;
+- **Expected output**: the query of the rows the test expects;
+- **Compilation errors**: the errors of a test that does not compile, also shown in a banner above
+  the sections.
+
+Each section has **Copy**. **Run test query** in the editor toolbar runs the test query or the
+expected output in BigQuery, to see the rows the test compares. To run the test itself, see
+[Unit tests]({{ '/dataform-plugin/features/unit-tests' | relative_url }}).
+
+{% include window.html src="/assets/img/dataform/preview-test.webp" caption="The Test view of test_gold_customer_ltv.sqlx, in Preview only: the input rows in place of the ref()s of gold_customer_ltv" index=5 %}

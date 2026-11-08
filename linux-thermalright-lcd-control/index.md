@@ -83,12 +83,6 @@ If your device is not listed, you can most likely add it yourself without writin
 - **System integration**: tray icon, session autostart (starts minimized), desktop notifications; rendering pauses
   while the window is hidden to save CPU.
 
-## Installation
-
-Packages are available for Fedora, Debian, Ubuntu and atomic distributions such as Bazzite and Silverblue, plus a
-tarball for any other distribution. See the
-[installation guide]({{ '/linux-thermalright-lcd-control/docs/installation' | relative_url }}).
-
 ## Contributing
 
 Contributions are welcome! To contribute:

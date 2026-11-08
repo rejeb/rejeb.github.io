@@ -5,32 +5,23 @@ project: dataform-plugin
 title: Lineage · Google Cloud Dataform Plugin for IntelliJ
 heading: Lineage
 summary: >-
-  File and project lineage graphs of your Dataform actions, with column-level lineage, filters,
-  search and focus.
+  The project lineage graph of your Dataform actions, with column-level lineage, filters, search
+  and focus.
 description: >-
-  Data lineage in Google Cloud Dataform Plugin for IntelliJ: the file lineage of the split editor, the project
-  lineage view, column-level lineage, filters, search and focus.
+  Data lineage in Google Cloud Dataform Plugin for IntelliJ: the project lineage view, column-level lineage,
+  filters, search and focus.
 nav_order: 6
 permalink: /dataform-plugin/features/lineage
 ---
 
 The plugin draws the dependency graph of your Dataform actions from the compiled project, and the
-column-to-column lineage from the compiled `SELECT` statements. Two views show it: the file lineage
-next to a SQLX file, and the project lineage of the whole pipeline.
+column-to-column lineage from the compiled `SELECT` statements, and shows them in the project lineage
+of the whole pipeline.
 
 {% include video.html src="/assets/video/dataform/lineage.mp4" caption="Search, selection, focus mode, filters and column lineage in the project lineage" index=1 %}
 
 Lineage needs a compiled project. If the graph is empty, the view asks you to compile the Dataform
 project first.
-
-## File lineage
-
-Open a SQLX file and select the **Lineage** view in the split editor toolbar, at the top right of the
-editor. The panel shows the **Direct dependencies** of the file: the actions it reads from on one
-side and the actions that read from it on the other. Double-click a node to open its file.
-
-Its toolbar switches the layout direction and the density, **Fit to view**, and **Open full
-lineage** opens the project lineage described below.
 
 ## Project lineage
 

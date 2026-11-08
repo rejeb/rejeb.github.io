@@ -1,12 +1,14 @@
 ---
 layout: default
 ---
-<article class="page">
-  <header class="page-head">
-    <p class="crumb">{% include crumb.html %}</p>
+{%- assign pg_slug = page.url | remove_first: '/' | split: '/' | first -%}
+{%- assign pg_proj = site.data.projects | where: 'slug', pg_slug | first -%}
+<section class="tile focus page-tile" aria-labelledby="pg-crumb">
+  <div class="tile-hd"><p id="pg-crumb" class="crumb">{% include crumb.html %}</p>{% if pg_proj %}<span>{{ pg_proj.ws | default: pg_proj.short | upcase }} · {{ pg_proj.license | upcase }}</span>{% endif %}</div>
+  <div class="tile-bd">
     {% assign title_text = page.heading | default: page.title %}{% include page-title.html text=title_text %}
-  </header>
-  <div class="prose">
-    {{ content }}
+    <div class="prose">
+      {{ content }}
+    </div>
   </div>
-</article>
+</section>

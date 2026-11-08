@@ -30,6 +30,8 @@ the action reads and the expected output, pre-filled from the columns known for 
 whose columns are not known yet gets a placeholder row. Existing test files are left untouched.
 Test files have their own icon in the Project view.
 
+{% include video.html src="/assets/video/dataform/unit-test-create.mp4" caption="Create Dataform Test on gold_daily_sales.sqlx in the Project view" index=2 %}
+
 ## Write the test
 
 - Completion suggests the inputs of the tested action and their columns.

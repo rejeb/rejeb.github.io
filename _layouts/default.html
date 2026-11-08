@@ -1,10 +1,15 @@
 <!doctype html>
 {%- comment -%} Build timestamp appended to asset URLs so each deploy bypasses browser caches. {%- endcomment -%}
 {%- assign v = site.time | date: "%s" -%}
+{%- comment -%} The program whose workspace is active: the first segment of the URL (none on the home page). {%- endcomment -%}
+{%- assign ws_slug = page.url | remove_first: '/' | split: '/' | first -%}
+{%- assign ws = site.data.projects | where: 'slug', ws_slug | first -%}
+{%- assign n = site.data.projects | size -%}
 <html lang="en" data-palette="wargames">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js')</script>
   {% seo %}
   {%- if page.noindex %}
   <meta name="robots" content="noindex">
@@ -22,18 +27,35 @@
   <a class="skip" href="#content">Skip to content</a>
   <div class="crt" aria-hidden="true"></div>
   <header class="top">
-    <a class="brand" href="{{ '/' | relative_url }}">RBR-OS</a>
-    <nav>
-      <a href="{{ '/' | relative_url }}" data-key="h">[H]OME</a>
+    <div class="top-l">
+      <a class="brand" href="{{ '/' | relative_url }}" data-key="h">RBR-OS</a>
+      <nav class="ws" aria-label="Workspaces">
+        <a href="{{ '/' | relative_url }}" data-key="0"{% if page.layout == 'home' %} aria-current="page"{% endif %}>0:HOME</a>
+        {%- for p in site.data.projects %}
+        <a href="{{ p.url | relative_url }}" data-key="{{ forloop.index }}"{% if ws.slug == p.slug %} aria-current="{% if page.url == p.url %}page{% else %}true{% endif %}"{% endif %}>{{ forloop.index }}:{{ p.ws | default: p.short | upcase }}</a>
+        {%- endfor %}
+      </nav>
+    </div>
+    <div class="top-r">
       <a href="{{ site.github_url }}" data-key="g">[G]ITHUB</a>
-    </nav>
+      <span class="top-ver">v2026.10 · APACHE-2.0</span>
+    </div>
   </header>
   <main id="content">
     {{ content }}
   </main>
   <footer class="bottom">
-    <span>RBR-OS v2026.10 · {{ site.data.projects | size }} PROGRAMS INSTALLED · APACHE-2.0</span>
-    <span>KEYS: [1-{{ site.data.projects | size }}] OPEN · [H] HOME · [ESC] BACK</span>
+    {%- if ws %}
+    <span>RBR-OS v2026.10 · {% if page.layout == 'doc' %}/USR/SHARE/DOC{% else %}/OPT{% endif %}/{{ ws.dir | upcase }} · {{ ws.license | upcase }}</span>
+    {%- else %}
+    <span>RBR-OS v2026.10 · {{ n }} PROGRAMS INSTALLED · APACHE-2.0</span>
+    {%- endif %}
+    <span class="keys-only">KEYS:
+      {%- if page.layout == 'home' %} [1-{{ n }}] SELECT · [ENTER] OPEN ·
+      {%- elsif page.layout == 'project' %}{% if ws.features %} [F] FEATURES ·{% endif %} [D] DOCS · [0-{{ n }}] WORKSPACE ·
+      {%- elsif page.layout == 'doc' %} [P] PREV · [N] NEXT · [0-{{ n }}] WORKSPACE ·
+      {%- else %} [0-{{ n }}] WORKSPACE ·
+      {%- endif %} [H] HOME · [ESC] BACK</span>
   </footer>
   <dialog class="viewer" id="viewer">
     <div class="viewer-bar"><span class="shot-cap" id="viewer-title"></span><button class="viewer-close" data-close aria-label="Close">[ ESC ] CLOSE</button></div>

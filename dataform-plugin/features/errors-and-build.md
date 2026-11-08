@@ -57,6 +57,8 @@ The block of a failing query shows a **BigQuery dry run failed** banner with the
 covers, for example **Estimated (2 of 3)**. An action that did not compile shows its compilation
 error in the same kind of banner.
 
+{% include window.html src="/assets/img/dataform/preview-dry-run-error.webp" caption="A failing dry run in the compiled preview of gold_customer_ltv.sqlx: Can't estimate, and Estimated (2 of 3) in the header" index=4 %}
+
 ## Build
 
 **Build ▸ Build Project** (`Ctrl+F9`) and the **Compile** button of the SQLX editor toolbar compile
@@ -70,9 +72,9 @@ the project, refresh the schemas and report the result in the **Build** tool win
 - when the Dataform CLI cannot start, or stops before compiling, the build explains it and gives the
   command to run in a terminal, with its directory, to see what the CLI reports.
 
-{% include window.html src="/assets/img/dataform/errors-build.webp" caption="The Build tool window after a build with a failing dry run" index=4 %}
+{% include window.html src="/assets/img/dataform/errors-build.webp" caption="The Build tool window after a build with a failing dry run" index=5 %}
 
-{% include window.html src="/assets/img/dataform/errors-code-frame.webp" caption="A compilation error with its code frame in the Build tool window" index=5 %}
+{% include window.html src="/assets/img/dataform/errors-code-frame.webp" caption="A compilation error with its code frame in the Build tool window" index=6 %}
 
 The build waits for the schema refresh, so it does not report success while a query still fails.
 When it finishes, a balloon sums up the result and links to the Build window.

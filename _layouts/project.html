@@ -1,39 +1,92 @@
 ---
 layout: default
 ---
-{% assign p = site.data.projects | where: "slug", page.project | first %}
-<article class="page project">
-  <header class="page-head">
-    <p class="crumb">{% include crumb.html %}</p>
-    {% unless p.logo %}<div class="project-badge">{{ p.short }}</div>{% endunless %}
-    {% include page-title.html text=p.name %}
-    <p class="lead">{{ p.tagline }}</p>
-    <ul class="meta">
-      <li><span>kind</span> {{ p.kind }}</li>
-      <li><span>version</span> <b data-version="{{ p.version_source }}">{{ p.version }}</b></li>
-      <li><span>license</span> {{ p.license }}</li>
-    </ul>
-    <p class="tags">{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
-    <p class="actions">
-      <a class="btn" href="{{ p.repo }}">Source on GitHub</a>
-      {% if p.features %}<a class="btn" href="{{ p.features | relative_url }}">Features</a>{% endif %}
-      <a class="btn" href="{{ p.docs | relative_url }}">Documentation</a>
-      {% for e in p.extra %}<a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>{% endfor %}
-    </p>
-  </header>
-
-  {% if p.screenshots %}
-  <section class="gallery" aria-label="Screenshots">
-    {% for s in p.screenshots %}
-      {% include window.html src=s.src caption=s.caption index=forloop.index eager=forloop.first %}
-    {% endfor %}
+{%- assign p = site.data.projects | where: "slug", page.project | first -%}
+{%- assign rels = site.data.releases | where: "project", p.slug | sort: "date" | reverse -%}
+{%- assign latest = rels | first -%}
+<div class="row">
+  <section class="tile focus" style="--f: 2 1 620px" aria-labelledby="p-hero">
+    <div class="tile-hd"><p id="p-hero" class="crumb">{% include crumb.html %}</p><span><span data-version="{{ p.version_source }}">{{ p.version }}</span> · {{ p.license | upcase }}</span></div>
+    <div class="tile-bd">
+      <div class="hero">
+        {% include logo.html p=p size=64 %}
+        <div class="hero-t">
+          <h1>{{ p.name }}</h1>
+          <p class="lead">{{ p.tagline }}</p>
+        </div>
+      </div>
+      <ul class="meta">
+        <li><span>kind</span> {{ p.kind }}</li>
+        <li><span>version</span> <b data-version="{{ p.version_source }}">{{ p.version }}</b></li>
+        <li><span>license</span> {{ p.license }}</li>
+        <li><span>language</span> {{ p.language }}</li>
+        <li><span>runs on</span> {{ p.os }}</li>
+      </ul>
+      <p class="tags">{% for t in p.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
+      <p class="t" data-repo="{{ p.repo | remove_first: 'https://github.com/' }}" hidden></p>
+      <p class="actions">
+        <a class="btn" href="{{ p.repo }}">Source on GitHub</a>
+        {%- if p.features %}
+        <a class="btn" href="{{ p.features | relative_url }}" data-key="f">Features</a>
+        {%- endif %}
+        <a class="btn" href="{{ p.docs | relative_url }}" data-key="d">Documentation</a>
+        {%- for e in p.extra %}
+        <a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>
+        {%- endfor %}
+      </p>
+    </div>
   </section>
-  {% endif %}
 
-  <div class="prose">
+  {%- if p.install %}
+  <section class="tile" style="--f: 1 1 320px" aria-labelledby="p-inst">
+    <div class="tile-hd"><h2 id="p-inst">INSTALL</h2><span>{{ p.install.where | upcase }}</span></div>
+    <div class="tile-bd">
+      <ol class="steps">
+        {%- for s in p.install.steps %}
+        <li><span class="k" aria-hidden="true">[{{ forloop.index }}]</span><span>{{ s | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+        {%- endfor %}
+      </ol>
+      {%- if p.install.note %}
+      <p class="note">{{ p.install.note }}</p>
+      {%- endif %}
+      <p class="actions"><a class="btn ghost" href="{{ p.docs | append: '/installation' | relative_url }}">Installation guide</a></p>
+      {%- if latest %}
+      <div class="latest">
+        <p class="lbl">LATEST RELEASE</p>
+        <p class="rel-line" data-date="{{ latest.date }}"><span class="ver">{{ latest.version }}</span><span class="d">{{ latest.date }}</span><a href="{% if latest.notes contains '://' %}{{ latest.notes }}{% else %}{{ latest.notes | relative_url }}{% endif %}">&gt; RELEASE NOTES</a></p>
+      </div>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endif %}
+</div>
+
+{%- if p.screenshots %}
+{%- assign shots = p.screenshots | size %}
+{%- comment -%} Figure list and the selected figure. Without JavaScript the list is hidden and every figure is shown. {%- endcomment %}
+<section class="tile" aria-labelledby="p-shots">
+  <div class="tile-hd"><h2 id="p-shots">SCREENSHOTS</h2><span>{{ shots }} FIGURES<span class="js-only"> · SELECT ONE</span></span></div>
+  <div class="dual">
+    <ul class="pick-list figs js-only" data-picker="figs" aria-label="Screenshots">
+      {%- for s in p.screenshots %}
+      <li><button type="button" class="pick fig" data-pick="{{ forloop.index0 }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span class="k">FIG.{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="c">{{ s.caption }}</span></button></li>
+      {%- endfor %}
+    </ul>
+    <div class="figs-view" data-picker="figs" aria-live="polite">
+      {%- for s in p.screenshots %}
+      <div class="pane{% if forloop.first %} on{% endif %}" data-pane="{{ forloop.index0 }}">{% include window.html src=s.src caption=s.caption index=forloop.index eager=forloop.first %}</div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="tile" aria-labelledby="p-readme">
+  <div class="tile-hd"><h2 id="p-readme">README</h2><span>/OPT/{{ p.dir | upcase }}/README</span></div>
+  <div class="tile-bd prose readme">
     {{ content }}
   </div>
-</article>
+</section>
 
 <script type="application/ld+json">
 {

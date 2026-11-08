@@ -34,6 +34,8 @@ Each SQLX file opens with a toolbar above the editor:
   [compiled preview]({{ '/dataform-plugin/features/compiled-preview' | relative_url }}). Unit test files
   show a **Test** view instead.
 
+{% include window.html src="/assets/img/dataform/editor-toolbar.webp" caption="The toolbar of gold_customer_ltv.sqlx, with the Query view of the compiled preview" index=1 %}
+
 ## Highlighting and validation
 
 - Syntax highlighting for SQL, JavaScript and config blocks.
@@ -41,6 +43,8 @@ Each SQLX file opens with a toolbar above the editor:
 - Schema-based validation of `workflow_settings.yaml` and `config { }` blocks.
 - Dataform compilation and BigQuery dry-run errors shown on the tokens they refer to. See
   [Errors and build]({{ '/dataform-plugin/features/errors-and-build' | relative_url }}).
+
+{% include video.html src="/assets/video/dataform/sqlx-validation.mp4" caption="An invalid action type, a missing comma and a misspelled workflow_settings.yaml property, each flagged on its token" index=2 %}
 
 ## Completion
 
@@ -56,9 +60,9 @@ Each SQLX file opens with a toolbar above the editor:
 
 Typing `$` opens completion for a `${...}` expression.
 
-{% include video.html src="/assets/video/dataform/sqlx-completion.mp4" caption="Completing ${ref()}, a table name, then join columns" index=2 %}
+{% include video.html src="/assets/video/dataform/sqlx-completion.mp4" caption="Completing ${ref()}, a table name, then join columns" index=3 %}
 
-{% include window.html src="/assets/img/dataform/sqlx-js-file.webp" caption="Completing ref() inside the query of a .js definition file" index=1 %}
+{% include window.html src="/assets/img/dataform/sqlx-js-file.webp" caption="Completing ref() inside the query of a .js definition file" index=2 %}
 
 ## Config block
 
@@ -76,7 +80,7 @@ In a `config { }` block, the keys and values offered follow the action's `type` 
 Mistakes in the block are reported as you type; see
 [Errors and build]({{ '/dataform-plugin/features/errors-and-build' | relative_url }}#in-the-editor).
 
-{% include window.html src="/assets/img/dataform/config-completion.webp" caption="The partitioning expressions offered for partitionBy, from the columns of the action" index=2 %}
+{% include window.html src="/assets/img/dataform/config-completion.webp" caption="The partitioning expressions offered for partitionBy, from the columns of the action" index=3 %}
 
 ## Navigation
 
@@ -94,14 +98,14 @@ Mistakes in the block are reported as you type; see
 - for a column: its name, type, mode, description and the table it comes from;
 - for a BigQuery function: its signature, description and examples.
 
-{% include window.html src="/assets/img/dataform/sqlx-quickdoc.webp" caption="Quick Documentation of the email column of silver_customers" index=3 %}
+{% include window.html src="/assets/img/dataform/sqlx-quickdoc.webp" caption="Quick Documentation of the email column of silver_customers" index=4 %}
 
 ## Inline expression values
 
 Template expressions are folded to their evaluated value, the way IntelliJ IDEA shows the values of
 `.properties` keys: `FROM ${ref("users")}` reads as `FROM my-project.my_dataset.users`.
 
-{% include video.html src="/assets/video/dataform/sqlx-folding.mp4" caption="Folded expressions of silver_orders.sqlx, expanded and edited" index=3 %}
+{% include video.html src="/assets/video/dataform/sqlx-folding.mp4" caption="Folded expressions of silver_orders.sqlx, expanded and edited" index=4 %}
 
 - `workflow_settings.yaml` references, such as `dataform.projectConfig.vars.env`, and `includes/`
   exports are folded too.
@@ -112,7 +116,7 @@ Template expressions are folded to their evaluated value, the way IntelliJ IDEA 
   mode (`when()`, `incremental()`) or define actions (`publish()`, `operate()`, `assert()`,
   `declare()`) stay visible.
 
-{% include window.html src="/assets/img/dataform/sqlx-folding.webp" caption="An includes/ helper folded to the WHERE clause it returns" index=4 %}
+{% include window.html src="/assets/img/dataform/sqlx-folding.webp" caption="An includes/ helper folded to the WHERE clause it returns" index=5 %}
 
 Values are computed by running the expression with the project's Node.js, so `ref()` and `self()`
 resolve after a compilation. The feature can be turned off in the

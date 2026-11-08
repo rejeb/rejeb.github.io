@@ -22,12 +22,6 @@ data into tabular DataFrames.
 - **Distributed reads** optimized for Spark.
 - **Storage**: local file systems and Amazon S3.
 
-## Add the dependency
-
-```scala
-libraryDependencies += "io.github.rejeb" %% "netcdf-spark-parser" % "1.0.0"
-```
-
 ## Read a file
 
 ```scala
@@ -48,5 +42,3 @@ val df = spark.read.format("netcdf")
 | `path` | Path to the NetCDF file | required |
 | `partition.size` | Rows per partition | 20,000 |
 | `dimensions.to.ignore` | Comma-separated dimensions to ignore | none |
-
-Requires Java 11+, Spark 3.5.x and Scala 2.12 or 2.13.

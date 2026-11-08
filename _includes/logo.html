@@ -1,0 +1,6 @@
+{%- comment -%} A program's logo at a given size, or its short name in a badge when it has none. Params: p (a project), size (px). {%- endcomment -%}
+{%- if include.p.logo -%}
+<img class="logo-img" src="{{ include.p.logo | relative_url }}" alt="" width="{{ include.size }}" height="{{ include.size }}">
+{%- else -%}
+<span class="logo-badge" style="--s: {{ include.size }}px" aria-hidden="true">{{ include.p.short }}</span>
+{%- endif -%}

@@ -1,87 +1,119 @@
 ---
 layout: default
 ---
-<section class="boot" data-boot>
-  <p>RBR-OS BIOS v2026.10 &nbsp;(C) RBENREJEB</p>
-  <p>MEMORY TEST ........ 640K OK</p>
-  <p>DETECTING PROGRAMS .. {{ site.data.projects | size }} FOUND</p>
-  <p>LOADING SHELL ....... OK</p>
-</section>
-
-
-<section class="screen" data-after-boot>
-<pre class="logo" aria-label="rbenrejeb">
+{%- assign n = site.data.projects | size -%}
+<div class="row">
+  <section class="tile" style="--f: 2 1 480px" aria-labelledby="t-motd">
+    <div class="tile-hd"><h2 id="t-motd">MOTD</h2><span>/ETC/MOTD</span></div>
+    <div class="tile-bd motd">
+<pre class="logo" role="img" aria-label="RBENREJEB">
  ____  ____  _____ _   _ ____  _____    _ _____ ____
 |  _ \| __ )| ____| \ | |  _ \| ____|  | | ____| __ )
 | |_) |  _ \|  _| |  \| | |_) |  _| _  | |  _| |  _ \
 |  _ &lt;| |_) | |___| |\  |  _ &lt;| |__| |_| | |___| |_) |
-|_| \_\____/|_____|_| \_|_| \_\_____\___/|_____|____/
-</pre>
-  <p class="sub">&gt; OPEN-SOURCE TOOLS FOR DATA ENGINEERS AND LINUX TINKERERS<span class="cur">█</span></p>
+|_| \_\____/|_____|_| \_|_| \_\_____\___/|_____|____/</pre>
+      <h1 class="sub">&gt; OPEN-SOURCE TOOLS FOR DATA ENGINEERS AND LINUX TINKERERS<span class="cur" aria-hidden="true">█</span></h1>
+    </div>
+  </section>
 
-  <div class="row2">
-    <div class="panel">
-      <div class="panel-title">═══ WHOAMI ═══</div>
-      <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> WHOAMI</p>
+  <section class="tile" style="--f: 1 1 300px" aria-labelledby="t-who">
+    <div class="tile-hd"><h2 id="t-who">WHOAMI</h2><span>~/</span></div>
+    <div class="tile-bd">
       <p class="who">RBENREJEB</p>
       <p class="bio">I build developer tools, data connectors and hardware hacks: an IDE plugin for data pipelines, a Spark connector for scientific data, and a Linux driver reverse-engineered from a Windows app. Everything here is open source.</p>
     </div>
-    <div class="panel">
-      <div class="panel-title">═══ SYSTEM INFO ═══</div>
+  </section>
+
+  <section class="tile" style="--f: 1 1 320px" aria-labelledby="t-sys">
+    <div class="tile-hd"><h2 id="t-sys">SYSTEM INFO</h2><span>/ETC/SYSINFO</span></div>
+    <div class="tile-bd">
       <table class="sys">
-        <tr><td>OPERATOR</td><td>RBENREJEB</td></tr>
-        <tr><td>PROGRAMS</td><td>{{ site.data.projects | size }}</td></tr>
-        <tr><td>LANGUAGES</td><td>JAVA · PYTHON · SCALA</td></tr>
-        <tr><td>LICENSE</td><td>APACHE-2.0</td></tr>
-        <tr><td>REMOTE</td><td><a href="{{ site.github_url }}">GITHUB.COM/REJEB</a> (FETCH)</td></tr>
-        <tr><td>SUPPORT</td><td>OPEN AN ISSUE ON THE PROGRAM'S REPOSITORY</td></tr>
+        <tr><th scope="row">OPERATOR</th><td>RBENREJEB</td></tr>
+        <tr><th scope="row">PROGRAMS</th><td>{{ n }}</td></tr>
+        <tr><th scope="row">LANGUAGES</th><td>JAVA · PYTHON · SCALA</td></tr>
+        <tr><th scope="row">LICENSE</th><td>APACHE-2.0</td></tr>
+        <tr><th scope="row">REMOTE</th><td><a href="{{ site.github_url }}">GITHUB.COM/REJEB</a></td></tr>
+        <tr><th scope="row">SUPPORT</th><td>OPEN AN ISSUE ON THE PROGRAM'S REPOSITORY</td></tr>
       </table>
     </div>
-  </div>
+  </section>
+</div>
 
-  <div class="panel" id="projects">
-    <div class="panel-title">═══ MAIN MENU ═══ SELECT A PROGRAM</div>
-    <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> LS /OPT</p>
-    <p class="hint">▶ CLICK A PROGRAM <span class="keys-only">OR PRESS <kbd>1</kbd>–<kbd>{{ site.data.projects | size }}</kbd> · <kbd>H</kbd> HOME · <kbd>ESC</kbd> BACK</span></p>
-    <ol class="menu">
-      {% for p in site.data.projects %}
-      <li>
-        <a href="{{ p.url | relative_url }}" data-key="{{ forloop.index }}">
-          <span class="k">[{{ forloop.index }}]</span>
-          <span class="n{% if p.logo %} with-logo{% endif %}">{% if p.logo %}<img class="title-logo" src="{{ p.logo | relative_url }}" alt="" width="34" height="34">{% endif %}{{ p.name | upcase }}</span>
-          <span class="v" data-version="{{ p.version_source }}">{{ p.version }}</span>
-        </a>
-        <p>{{ p.tagline }}</p>
-        <p class="t">{{ p.kind | upcase }} · {% for t in p.tags %}{{ t | upcase }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
-        <p class="t" data-repo="{{ p.repo | remove_first: 'https://github.com/' }}" hidden></p>
-      </li>
-      {% endfor %}
-    </ol>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">═══ QUICKSTART ═══</div>
-    {% for p in site.data.projects %}
-    <div class="snip">
-      <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:/OPT/{{ p.dir | upcase }}$</span> CAT {{ p.snippet_file | upcase }}</p>
-      <pre><code>{{ p.snippet | escape }}</code></pre>
+{%- comment -%} Program list and detail in one window. Without JavaScript the list is hidden and every program's
+detail is shown, one after the other. The list and the Quickstart tabs share the selection (data-picker). {%- endcomment %}
+<section class="tile focus" id="projects" aria-labelledby="t-opt">
+  <div class="tile-hd"><h2 id="t-opt">MAIN MENU · SELECT A PROGRAM</h2><span>/OPT · {{ n }} ITEMS · FOCUSED</span></div>
+  <div class="dual">
+    <div class="pick-list js-only" data-picker="prog">
+      <p class="pick-hd" aria-hidden="true"><span>NAME</span><span>VERSION</span></p>
+      <ul>
+        {%- for p in site.data.projects %}
+        <li><button type="button" class="pick" data-pick="{{ forloop.index0 }}" data-key="{{ forloop.index }}" data-href="{{ p.url | relative_url }}" aria-controls="prog-{{ p.slug }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span class="k">[{{ forloop.index }}]</span>{% include logo.html p=p size=30 %}<span class="n">{{ p.name | upcase }}</span><span class="v" data-version="{{ p.version_source }}">{{ p.version }}</span></button></li>
+        {%- endfor %}
+      </ul>
+      <p class="pick-foot"><span class="keys-only">▶ [1]–[{{ n }}] SELECT · [ENTER] OPEN</span><span class="touch-only">▶ TAP A PROGRAM, THEN OPEN</span></p>
     </div>
-    {% endfor %}
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">═══ DOCUMENTS ═══</div>
-    <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span> TREE /USR/SHARE/DOC</p>
-    <ul class="docs">
-      {% for p in site.data.projects %}
-      <li>
-        <a href="{{ p.docs | relative_url }}">/USR/SHARE/DOC/{{ p.dir | upcase }}/README</a>
-        <span class="links"><a href="{{ p.repo }}">SOURCE</a>{% for e in p.extra %} · <a href="{{ e.url }}">{{ e.label | upcase }}</a>{% endfor %}</span>
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="detail stack" data-picker="prog" aria-live="polite">
+      {%- for p in site.data.projects %}
+      <div class="pane{% if forloop.first %} on{% endif %}" id="prog-{{ p.slug }}" data-pane="{{ forloop.index0 }}">
+        <p class="path">/OPT/{{ p.dir | upcase }} · {{ p.kind | upcase }}</p>
+        <div class="d-head">{% include logo.html p=p size=56 %}<h3>{{ p.name | upcase }}</h3></div>
+        <p class="tagline">{{ p.tagline }}</p>
+        <ul class="meta">
+          <li><span>version</span> <b data-version="{{ p.version_source }}">{{ p.version }}</b></li>
+          <li><span>language</span> {{ p.language }}</li>
+          <li><span>license</span> {{ p.license }}</li>
+          <li><span>runs on</span> {{ p.os }}</li>
+        </ul>
+        <p class="t">{% for t in p.tags %}{{ t | upcase }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+        <p class="t" data-repo="{{ p.repo | remove_first: 'https://github.com/' }}" hidden></p>
+        <p class="actions">
+          <a class="btn" href="{{ p.url | relative_url }}">Open</a>
+          <a class="btn ghost" href="{{ p.docs | relative_url }}">Docs</a>
+          <a class="btn ghost" href="{{ p.repo }}">Source</a>
+          {%- for e in p.extra %}
+          <a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>
+          {%- endfor %}
+        </p>
+      </div>
+      {%- endfor %}
+    </div>
   </div>
 </section>
+
+<div class="row">
+  <section class="tile" style="--f: 3 1 520px" aria-labelledby="t-qs">
+    <div class="tile-hd"><h2 id="t-qs">QUICKSTART</h2><span>CAT</span></div>
+    <div class="tabs js-only" role="group" aria-label="Choose a program" data-picker="prog">
+      {%- for p in site.data.projects %}
+      <button type="button" class="tab" data-pick="{{ forloop.index0 }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">[{{ forloop.index }}] {{ p.snippet_file | upcase }}</button>
+      {%- endfor %}
+    </div>
+    <div class="tile-bd stack" data-picker="prog">
+      {%- for p in site.data.projects %}
+      <div class="pane snip{% if forloop.first %} on{% endif %}" data-pane="{{ forloop.index0 }}">
+        <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:/OPT/{{ p.dir | upcase }}$</span>CAT {{ p.snippet_file | upcase }}</p>
+        <pre><code>{{ p.snippet | rstrip | escape }}</code></pre>
+      </div>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="tile" style="--f: 2 1 340px" aria-labelledby="t-rel">
+    <div class="tile-hd"><h2 id="t-rel">RELEASES</h2><span>/VAR/LOG/RELEASES</span></div>
+    <div class="tile-bd">
+      <p class="login js-only" data-login></p>
+      <p class="prompt"><span class="ps">RBENREJEB@RBR-OS:~$</span>HEAD -4 /VAR/LOG/RELEASES</p>
+      <ul class="rel" aria-label="Latest releases">
+        {%- assign rels = site.data.releases | sort: "date" | reverse %}
+        {%- for r in rels limit: 4 %}
+        {%- assign rp = site.data.projects | where: "slug", r.project | first %}
+        <li data-date="{{ r.date }}"><span class="d">{{ r.date }}</span><span class="ver">{{ r.version }}</span><a href="{% if r.notes contains '://' %}{{ r.notes }}{% else %}{{ r.notes | relative_url }}{% endif %}">{{ rp.dir | upcase }} · RELEASE NOTES</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+</div>
 
 <script type="application/ld+json">
 {

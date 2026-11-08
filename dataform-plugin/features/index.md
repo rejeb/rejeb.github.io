@@ -12,12 +12,17 @@ nav_order: 1
 permalink: /dataform-plugin/features
 ---
 
-Select a feature to see what it does and how to use it. Features that call Google Cloud need the
-sign-in and repository set up in [Configuration]({{ '/dataform-plugin/docs/configuration' | relative_url }}).
+The plugin brings the whole Dataform workflow into IntelliJ IDEA: writing SQLX with completion and
+navigation, checking what it compiles to and what it costs, following the lineage of each table and
+column, running queries, workflows and unit tests in BigQuery, and keeping your Dataform workspace
+in sync with Google Cloud. Each feature is described on its own page.
+
+Features that call Google Cloud need the Google Cloud sign-in and an active Dataform repository,
+set up as described in the Configuration chapter of the documentation.
 
 {% assign features = site.pages | where_exp: "d", "d.url contains '/dataform-plugin/features/'" | sort: "nav_order" %}
 {% for f in features %}
-### [{{ f.heading }}]({{ f.url | relative_url }})
+### {{ f.heading }}
 
 {{ f.summary }}
 {% endfor %}

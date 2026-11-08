@@ -1,0 +1,4 @@
+{%- comment -%} Pager label of a documentation or features page. Params: d (the page), p (its project). {%- endcomment -%}
+{%- if include.d.url == include.p.docs -%}DOCUMENTATION · OVERVIEW
+{%- elsif include.d.url == include.p.features -%}FEATURES · OVERVIEW
+{%- else -%}{{ include.d.heading | default: include.d.title | upcase }}{%- endif -%}

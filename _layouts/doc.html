@@ -1,31 +1,80 @@
 ---
 layout: default
 ---
-{% assign p = site.data.projects | where: "slug", page.project | first %}
-{% if page.section == "features" %}{% assign base = p.features %}{% assign section_name = "Features" %}{% else %}{% assign base = p.docs %}{% assign section_name = "Documentation" %}{% endif %}
-{% assign chapters = site.pages | where_exp: "d", "d.url contains base" | sort: "nav_order" %}
-<article class="page doc">
-  <header class="page-head">
-    <p class="crumb">{% include crumb.html %}</p>
-    {% assign title_text = page.heading | default: page.title %}{% include page-title.html text=title_text %}
-    <p class="lead">{{ p.name }} · {{ section_name }}</p>
-    <p class="actions">
-      <a class="btn ghost" href="{{ p.url | relative_url }}">Program page</a>
-      {% if page.section == "features" %}<a class="btn ghost" href="{{ p.docs | relative_url }}">Documentation</a>{% elsif p.features %}<a class="btn ghost" href="{{ p.features | relative_url }}">Features</a>{% endif %}
-      <a class="btn ghost" href="{{ p.repo }}">Source on GitHub</a>
-    </p>
-  </header>
-
-  <nav class="panel doc-nav" aria-label="{{ section_name }} contents">
-    <div class="panel-title">═══ {% if page.section == "features" %}FEATURES{% else %}CONTENTS{% endif %} ═══</div>
-    <ul class="docs">
-      {% for c in chapters %}
-      <li><a href="{{ c.url | relative_url }}"{% if c.url == page.url %} aria-current="page"{% endif %}>{{ c.heading | default: c.title | upcase }}</a></li>
-      {% endfor %}
-    </ul>
+{%- comment -%}
+Documentation and features in one view: a tree (groups ▸ pages ▸ the current page's ## sections) next to the page.
+With JavaScript the page shows one section at a time (site.js); without it the whole page shows and the section
+entries are anchor links.
+{%- endcomment -%}
+{%- assign p = site.data.projects | where: "slug", page.project | first -%}
+{%- if page.section == "features" -%}{%- assign section_name = "Features" -%}{%- else -%}{%- assign section_name = "Documentation" -%}{%- endif -%}
+{%- assign docs = site.pages | where_exp: "d", "d.url contains p.docs" | sort: "nav_order" -%}
+{%- assign all = docs -%}
+{%- assign groups = "docs" -%}
+{%- if p.features -%}
+  {%- assign feats = site.pages | where_exp: "d", "d.url contains p.features" | sort: "nav_order" -%}
+  {%- assign all = all | concat: feats -%}
+  {%- assign groups = "docs,features" -%}
+{%- endif -%}
+{%- assign groups = groups | split: "," -%}
+{%- for c in all -%}{%- if c.url == page.url -%}{%- assign at = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- assign last_i = all | size | minus: 1 -%}
+{%- if at > 0 -%}{%- assign prev_i = at | minus: 1 -%}{%- assign prev = all[prev_i] -%}{%- endif -%}
+{%- if at < last_i -%}{%- assign next_i = at | plus: 1 -%}{%- assign next = all[next_i] -%}{%- endif -%}
+{%- comment -%} The current page's level-2 sections, read from its HTML: kramdown writes <h2 id="slug">Title</h2>. {%- endcomment -%}
+{%- assign h2s = content | split: '<h2 id="' -%}
+<div class="row doc-row">
+  <nav class="tree-nav" aria-label="{{ p.name }}: documentation and features">
+    <section class="tile" aria-labelledby="h-tree">
+      <div class="tile-hd"><h2 id="h-tree">CONTENTS</h2><span>/USR/SHARE/DOC</span></div>
+      <div class="tile-bd tree-bd">
+        {%- for g in groups %}
+        {%- if g == "features" %}{% assign base = p.features %}{% assign chapters = feats %}{% assign gname = "FEATURES" %}
+        {%- else %}{% assign base = p.docs %}{% assign chapters = docs %}{% assign gname = "DOCUMENTATION" %}{% endif %}
+        {%- unless forloop.first %}
+        <div class="tree-sep"></div>
+        {%- endunless %}
+        <button type="button" class="tree-group" aria-expanded="true" aria-controls="tree-{{ g }}" data-toggle><span class="c" aria-hidden="true">▾</span><span class="n">{{ gname }}</span><span class="cnt">{{ chapters | size }}</span></button>
+        <ul class="tree" id="tree-{{ g }}">
+          {%- for c in chapters %}
+          {%- assign is_last = forloop.last %}
+          {%- if c.url == base %}{% assign label = "OVERVIEW" %}{% else %}{% assign label = c.heading | default: c.title | upcase %}{% endif %}
+          <li>
+            <a class="tree-page" href="{{ c.url | relative_url }}"{% if c.url == page.url %} aria-current="page" data-intro{% endif %}><span class="g" aria-hidden="true">{% if is_last %}└─{% else %}├─{% endif %}</span><span>{{ label }}</span></a>
+            {%- if c.url == page.url and h2s.size > 1 %}
+            <ul class="tree-secs">
+              {%- for part in h2s offset: 1 %}
+              {%- assign sid = part | split: '"' | first %}
+              {%- assign stitle = part | split: '</h2>' | first | remove_first: sid | remove_first: '">' | strip_html | strip %}
+              <li><a href="#{{ sid }}" data-sec="{{ sid }}"><span class="g" aria-hidden="true">{% if is_last %}&nbsp;&nbsp;&nbsp;{% else %}│&nbsp;&nbsp;{% endif %}{% if forloop.last %}└─{% else %}├─{% endif %}</span><span>{{ stitle | upcase }}</span></a></li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- endfor %}
+        <p class="see">SEE ALSO</p>
+        <ul class="see-list">
+          <li><a href="{{ p.url | relative_url }}">PROGRAM PAGE</a></li>
+          <li><a href="{{ p.repo }}">SOURCE ON GITHUB</a></li>
+        </ul>
+      </div>
+    </section>
   </nav>
 
-  <div class="prose">
-    {{ content }}
-  </div>
-</article>
+  <section class="tile focus doc-main" aria-labelledby="h-main">
+    <div class="tile-hd"><p id="h-main" class="crumb">{% include crumb.html %}</p><span data-pos="{{ section_name | upcase }}">{{ section_name | upcase }}</span></div>
+    <div class="tile-bd">
+      <div id="doc-top">{% assign title_text = page.heading | default: page.title %}{% include page-title.html text=title_text %}</div>
+      <p class="lead">{{ p.name }} · {{ section_name }}</p>
+      <div class="prose" data-doc>
+        {{ content }}
+      </div>
+      <nav class="pager" aria-label="Previous and next" data-pager>
+        <span>{% if prev %}<a href="{{ prev.url | relative_url }}" data-key="p">◂ {% include doc-label.html d=prev p=p %}</a>{% endif %}</span>
+        <span>{% if next %}<a href="{{ next.url | relative_url }}" data-key="n">{% include doc-label.html d=next p=p %} ▸</a>{% endif %}</span>
+      </nav>
+    </div>
+  </section>
+</div>

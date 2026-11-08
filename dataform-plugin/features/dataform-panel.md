@@ -100,6 +100,8 @@ Right-click a folder to **Fetch to Local** the whole folder.
 Pull and push only move files between your computer and the Dataform workspace; they do not create
 Git commits. They stay available in a project cloned from the repository's Git remote.
 
+{% include video.html src="/assets/video/dataform/panel-pull-push.mp4" caption="A tag added to gold_daily_sales.sqlx pushed to the site-demo workspace, deleted locally, then pulled back" index=2 %}
+
 ## Commit and push to Git
 
 The **Changes** tab works on the workspace in Google Cloud, like the Dataform web editor. What it
@@ -155,3 +157,5 @@ follows it: adding that remote to the project disables these buttons without a r
 Outside the tool window, **Compare File with Remote** compares a local file with its version in the
 selected workspace. It is available from the editor's context menu, the Project view's context menu
 and the **Compare** actions.
+
+{% include placeholder.html text="Add a short video" %}

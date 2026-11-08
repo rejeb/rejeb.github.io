@@ -33,6 +33,8 @@ The query always matches your sources: if an edit has not been compiled yet, the
 the compilation in the background (**Waiting for Dataform compilation…**, which you can cancel)
 before running it.
 
+{% include video.html src="/assets/video/dataform/query-run.mp4" caption="Run query on an edited gold_customer_ltv.sqlx: the compilation it waits for, the choice of query, then an assertion run from the preview" index=2 %}
+
 ## Results
 
 The results open in the **Services** tool window, under **Dataform Queries**, one node per query
