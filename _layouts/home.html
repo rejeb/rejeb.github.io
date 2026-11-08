@@ -57,7 +57,7 @@ detail is shown, one after the other. The list and the Quickstart tabs share the
       {%- for p in site.data.projects %}
       <div class="pane{% if forloop.first %} on{% endif %}" id="prog-{{ p.slug }}" data-pane="{{ forloop.index0 }}">
         <p class="path">/OPT/{{ p.dir | upcase }} · {{ p.kind | upcase }}</p>
-        <div class="d-head">{% include logo.html p=p size=56 %}<h3>{{ p.name | upcase }}</h3></div>
+        <div class="d-head">{% include logo.html p=p size=56 %}<h3><a class="d-link" href="{{ p.url | relative_url }}">{{ p.name | upcase }}</a></h3></div>
         <p class="tagline">{{ p.tagline }}</p>
         <ul class="meta">
           <li><span>version</span> <b data-version="{{ p.version_source }}">{{ p.version }}</b></li>

@@ -52,7 +52,7 @@
     {%- endif %}
     <span class="keys-only">KEYS:
       {%- if page.layout == 'home' %} [1-{{ n }}] SELECT · [ENTER] OPEN ·
-      {%- elsif page.layout == 'project' %}{% if ws.features %} [F] FEATURES ·{% endif %} [D] DOCS · [0-{{ n }}] WORKSPACE ·
+      {%- elsif page.layout == 'project' %} [D] DOCS · [0-{{ n }}] WORKSPACE ·
       {%- elsif page.layout == 'doc' %} [P] PREV · [N] NEXT · [0-{{ n }}] WORKSPACE ·
       {%- else %} [0-{{ n }}] WORKSPACE ·
       {%- endif %} [H] HOME · [ESC] BACK</span>

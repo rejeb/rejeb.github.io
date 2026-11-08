@@ -277,3 +277,7 @@ html:not(.js) [data-pane] + [data-pane] { margin-top: 18px; padding-top: 18px; b
   .hero .logo-img, .hero .logo-badge { width: 48px; height: 48px; }
   .hero .logo-badge { font-size: 31px; }
 }
+
+/* Program title in the home detail pane links to the program page. */
+.d-head h3 a.d-link { color: inherit; text-decoration: none; }
+.d-head h3 a.d-link:hover, .d-head h3 a.d-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }

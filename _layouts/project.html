@@ -26,10 +26,7 @@ layout: default
       <p class="t" data-repo="{{ p.repo | remove_first: 'https://github.com/' }}" hidden></p>
       <p class="actions">
         <a class="btn" href="{{ p.repo }}">Source on GitHub</a>
-        {%- if p.features %}
-        <a class="btn" href="{{ p.features | relative_url }}" data-key="f">Features</a>
-        {%- endif %}
-        <a class="btn" href="{{ p.docs | relative_url }}" data-key="d">Documentation</a>
+        <a class="btn" href="{{ p.docs | relative_url }}" data-key="d">Docs</a>
         {%- for e in p.extra %}
         <a class="btn ghost" href="{{ e.url }}">{{ e.label }}</a>
         {%- endfor %}
