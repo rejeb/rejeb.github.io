@@ -12,6 +12,57 @@ permalink: /dataform-plugin/docs/release-notes
 
 Earlier versions are listed on the [plugin page](https://plugins.jetbrains.com/plugin/30020).
 
+## 1.1.0
+
+### New
+
+- [Knowledge Catalog lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}#knowledge-catalog-lineage): the project
+  lineage and the **Lineage** view of the compiled preview have a **Dataform | Knowledge Catalog**
+  switch. Knowledge Catalog shows the lineage BigQuery recorded when the jobs ran, for the whole
+  repository: every table and the tables outside it up to two levels away, with a **+N** expander at
+  the edge of the graph that loads one more level, when each table was last written, and for a
+  recorded link the jobs that recorded it and the `ref()` that declares it. It needs the Data Lineage
+  API and the `roles/datalineage.viewer` role.
+- [Cached lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}#loading-and-updates): the Knowledge Catalog lineage is
+  kept in the project cache and drawn at once when a lineage view is shown, then checked with one
+  call and updated in the background. A failed update keeps the lineage loaded before, with
+  **Retry**.
+- [Open full lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}#in-the-compiled-preview), from the **Lineage** view of
+  a file, opens the project lineage on the same source with the tables of the file marked.
+- [Dataform Lineage tool window]({{ '/dataform-plugin/features/lineage' | relative_url }}#the-dataform-lineage-tool-window):
+  **Runs** lists the runs that wrote a table or a link, with **Open latest job**; **Trace** lists up to
+  5 levels upstream or downstream, tables not on the graph yet included; **Differences** lists the
+  links that ran but no `ref()` declares, and the declared dependencies no run read.
+- [Column cards]({{ '/dataform-plugin/features/lineage' | relative_url }}#column-lineage): each node lists its columns with their
+  BigQuery types. Selecting a column colours every column on its lineage, in each card, instead of
+  drawing column-to-column edges.
+- [Column search]({{ '/dataform-plugin/features/lineage' | relative_url }}#search): a **Tables | Columns** switch in the search
+  field. A column search finds the columns by name and shows their lineage.
+- With Knowledge Catalog, the column lineage is the recorded one, and tables outside the repository
+  list the columns read from BigQuery.
+
+### Improvements
+
+- [Scripts]({{ '/dataform-plugin/features/bigquery-cost' | relative_url }}#scripts) (a query behind pre-operations, or several statements)
+  show **Run to estimate** in the compiled preview instead of a cost BigQuery cannot estimate.
+  **Run Query** measures them, without the BigQuery cache, and the preview then shows the bytes and
+  cost of that run.
+- A selected column keeps the tables off its lineage on screen, faded.
+
+### Fixes
+
+- **Compare File with Remote** compared the local file with an empty remote side. It now compares
+  it with the selected workspace, or with the main branch when no workspace is selected.
+- After a push, the **Files** tab of the Dataform Tools tool window kept the old status of the files.
+- A long dry-run error widened every block of the compiled preview.
+- In a narrow editor, the headers of the compiled preview and of the lineage view ran under their
+  buttons. Their text is now shortened, with the whole text in a tooltip.
+- A SQLX file reverted on disk, for example by a Git checkout, showed the code of its template
+  expressions instead of their evaluated values.
+- Completion could fail in a SQLX file after its evaluated values were refreshed.
+- Query results could show a negative duration and 0 B processed when the job ended between two
+  status checks.
+
 ## 1.0.0
 
 Requires IntelliJ IDEA Ultimate 2026.2 or later. The full list of supported IDEs is on the plugin page.

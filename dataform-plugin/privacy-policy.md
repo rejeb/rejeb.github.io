@@ -9,7 +9,7 @@ image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
 ---
 
-*Effective date: October 27, 2026*
+*Effective date: November 14, 2026*
 
 This Privacy Policy explains how **Google Cloud Dataform Plugin for IntelliJ** (the "plugin") accesses, uses,
 stores and shares your data, including data received from Google APIs. The plugin is open source:
@@ -50,7 +50,7 @@ When you sign in, the plugin requests these OAuth scopes:
 |---|---|
 | `openid` | Part of Google's sign-in protocol, used together with `email`. |
 | `email` | To read your account email address, which the plugin shows as the signed-in account and uses as the author of the commits you make in a Dataform workspace. |
-| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs the plugin uses: Dataform (repositories, workspaces, files, commits, compilation results and workflow invocations), BigQuery (dry runs, queries, datasets and job details), IAM and Cloud Resource Manager (listing the service accounts a repository can run with, Google-provided service agents included) and Cloud Billing (the public BigQuery price list). |
+| `https://www.googleapis.com/auth/cloud-platform` | To call the Google Cloud APIs the plugin uses: Dataform (repositories, workspaces, files, commits, compilation results and workflow invocations), BigQuery (dry runs, queries, datasets, table schemas and job details), Data Lineage (the lineage Knowledge Catalog recorded for your tables), IAM and Cloud Resource Manager (listing the service accounts a repository can run with, Google-provided service agents included) and Cloud Billing (the public BigQuery price list). |
 
 The plugin uses these scopes only for the features described in this policy, and what it can do
 in Google Cloud is limited by the IAM permissions of your account. It uses only the credential
@@ -94,6 +94,18 @@ local clone.
   described above. Dataform then compiles the workspace and runs the selected actions in BigQuery,
   under the identity configured for the repository, such as its service account. The plugin reads
   the progress of the run and its BigQuery job details to show them in the IDE.
+- **Knowledge Catalog lineage.** While a lineage view shows the Knowledge Catalog source, the plugin
+  reads from the Data Lineage API the lineage recorded for the tables of your Dataform project, in
+  its default Google Cloud project and location (`defaultProject` and `defaultLocation` in
+  `workflow_settings.yaml`): the links between tables, the processes and runs that recorded them,
+  and the links between their columns. The choice of source is kept for the project, so these
+  requests are also sent when you open a lineage view later. Each time a view shows the lineage, one
+  request checks that it is still current; when it is not, the plugin reads it again in the
+  background. To list the columns of tables outside your Dataform project, it reads their schema
+  from BigQuery. These requests send table and column names. The plugin keeps the tables and links
+  it read in the project cache, so that it can show them at once the next time, and keeps the
+  processes, runs and column lineage in memory while a lineage view shows them (see
+  [Data retention and deletion](#data-retention-and-deletion)).
 - **BigQuery prices.** While you are signed in and the list price option is selected, the plugin
   downloads the public BigQuery price list from the Cloud Billing API, in the currency you chose, and
   refreshes it about once a day. The request carries your access token and no project content.
@@ -128,7 +140,7 @@ content to the developer. It exchanges Google user data only with Google:
 
 | Recipient | When | What is sent |
 |---|---|---|
-| **Google** (OAuth, Dataform, BigQuery, IAM, Cloud Resource Manager and Cloud Billing APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
+| **Google** (OAuth, Dataform, BigQuery, Data Lineage, IAM, Cloud Resource Manager and Cloud Billing APIs) | When you sign in and use the features described above, including the automatic requests. | Your credentials, and the data each request needs, such as project content, SQL and resource names. |
 
 The IDE's error and freeze reports can reach JetBrains and the developer: see
 [Error and freeze reports](#error-and-freeze-reports).
@@ -159,9 +171,10 @@ Marketplace, the developer holds no copy of your data. On your computer, the plu
 |---|---|---|
 | Refresh token and account email address | Password Safe | You sign out, or the IDE restarts if Password Safe does not save passwords |
 | Access tokens | Memory | They expire (after about an hour), you sign out, or the IDE closes |
-| Table schemas from dry runs, the latest compilation result (including compiled SQL) and the list of remote workspace files | `cache-state.xml`, in the project's folder under `projects` in the IDE system directory | You delete the file while the IDE is closed |
+| Table schemas from dry runs, the latest compilation result (including compiled SQL), the list of remote workspace files and the Knowledge Catalog lineage of your tables (the tables and the links between them) | `cache-state.xml`, in the project's folder under `projects` in the IDE system directory | You delete the file while the IDE is closed |
 | BigQuery price list | `dataformBigQueryPrices.xml`, under `options` in the IDE configuration directory | You delete the file while the IDE is closed |
 | Query results | Memory | You close the result or the project |
+| Knowledge Catalog processes, runs and column lineage | Memory | No lineage view shows them any more, or the project closes |
 | Repository settings (Google Cloud project, location, repository, service account and workspace) | `.idea/dataform-gcp-repository-setting.xml` in your project, shared if you commit `.idea` | You remove the repository with **Manage Repositories** or delete the file |
 | Files pulled from a Dataform workspace | Your project | You delete them |
 | Warnings and errors | IDE log (`idea.log`) | The IDE rotates the log |

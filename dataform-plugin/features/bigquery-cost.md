@@ -9,7 +9,8 @@ summary: >-
   the queries and workflows you ran.
 description: >-
   BigQuery cost estimates in Google Cloud Dataform Plugin for IntelliJ: dry-run estimates in the
-  compiled preview, billed cost of queries and workflow runs, and the price settings.
+  compiled preview, the measured cost of scripts, billed cost of queries and workflow runs, and the
+  price settings.
 nav_order: 10
 permalink: /dataform-plugin/features/bigquery-cost
 ---
@@ -31,6 +32,21 @@ Hover a cost to see how it was priced: the location of the query, the price per 
 price comes from.
 
 {% include window.html src="/assets/img/dataform/preview-cost-tooltip.webp" caption="Estimate of gold_customer_ltv, priced at the us-central1 list price" index=1 %}
+
+### Scripts
+
+BigQuery cannot estimate the bytes of a script: a query behind pre-operations, or several
+statements. Instead of a cost, the preview shows **Run to estimate**, and its tooltip says why.
+
+{% include window.html src="/assets/img/dataform/preview-run-to-estimate.webp" caption="gold_products has pre-operations: BigQuery cannot estimate it" index=2 width=798 %}
+
+**Run Query** measures it. While the query runs, the label reads **Measuring…**; the query runs
+without the BigQuery cache, so it is billed. The label then shows the bytes processed and the cost of
+the bytes billed by that run. When you change the query afterwards, the figure stays, and its tooltip
+says it was measured by an earlier version of the query: run it again to update it. Measured costs
+are kept while the project is open.
+
+{% include window.html src="/assets/img/dataform/preview-measured-cost.webp" caption="After Run Query: the bytes and cost measured by the run" index=3 width=798 %}
 
 ## After running
 
@@ -64,8 +80,8 @@ Costs are set up in **Settings ▸ Tools ▸ Dataform ▸ BigQuery cost**:
 The line below shows how many locations the price list covers and when it was last updated;
 **Refresh** loads it again.
 
-{% include window.html src="/assets/img/dataform/settings-cost.webp" caption="The BigQuery cost settings" index=2 %}
+{% include window.html src="/assets/img/dataform/settings-cost.webp" caption="The BigQuery cost settings" index=4 %}
 
-{% include window.html src="/assets/img/dataform/preview-capacity.webp" caption="The compiled preview with capacity pricing: bytes only, without a price" index=3 %}
+{% include window.html src="/assets/img/dataform/preview-capacity.webp" caption="The compiled preview with capacity pricing: bytes only, without a price" index=5 %}
 
 Prices are estimates for information only; your Google Cloud bill is the reference.

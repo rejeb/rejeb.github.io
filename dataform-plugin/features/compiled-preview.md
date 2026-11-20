@@ -87,10 +87,15 @@ The **Lineage** view draws the direct dependencies of the file: its actions, the
 from and the actions that read from them. The file's action is selected, with its edges in blue. The
 header names the file, and the status bar counts the nodes.
 
+- The **Dataform | Knowledge Catalog** switch in the header picks the source. With Knowledge Catalog,
+  the view shows the tables of the file and the tables BigQuery recorded directly upstream and
+  downstream of them. See
+  [Knowledge Catalog lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}#in-the-compiled-preview).
 - Double-click a node to open its file.
 - Right-click a node for **Open SQLX**, **Run**, **Focus on lineage** and **Copy name**.
 - **Layout direction** lays the graph out left to right or top to bottom.
-- **Open full lineage** opens the project lineage, with its filters, search and column lineage. See
+- **Open full lineage** opens the project lineage on the same source, with the tables of the file
+  marked, and its filters, search and column lineage. See
   [Lineage]({{ '/dataform-plugin/features/lineage' | relative_url }}).
 
 The view needs a compiled project. Until then it reads **No lineage for this file. Compile the
