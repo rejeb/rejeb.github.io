@@ -8,6 +8,7 @@ description: >-
   1.0.0.
 nav_order: 5
 permalink: /dataform-plugin/docs/release-notes
+last_modified_at: 2026-11-20
 ---
 
 Earlier versions are listed on the [plugin page](https://plugins.jetbrains.com/plugin/30020).

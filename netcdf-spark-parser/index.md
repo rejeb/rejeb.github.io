@@ -7,6 +7,7 @@ description: >-
   local disk or Amazon S3. Scala 2.12 and 2.13, Spark 3.5.
 image: /assets/img/og/og-netcdf-spark-parser.png
 permalink: /netcdf-spark-parser
+last_modified_at: 2026-11-08
 ---
 
 ## Overview

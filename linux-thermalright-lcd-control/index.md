@@ -7,6 +7,7 @@ description: >-
   live CPU and GPU metrics. Packages for Fedora, Debian and Ubuntu.
 image: /assets/img/og/og-linux-thermalright-lcd-control.png
 permalink: /linux-thermalright-lcd-control
+last_modified_at: 2026-11-08
 ---
 
 ## Overview

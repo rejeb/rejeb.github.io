@@ -7,6 +7,7 @@ description: >-
   lineage, workflow runs and unit tests, without leaving the IDE. Free and open source.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin
+last_modified_at: 2026-11-08
 ---
 
 ## Independent project

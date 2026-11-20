@@ -6,6 +6,7 @@ heading: Overview
 description: Overview documentation for NetCDF Spark Parser.
 nav_order: 1
 permalink: /netcdf-spark-parser/docs
+last_modified_at: 2026-10-18
 ---
 
 Reference documentation for **NetCDF Spark Parser**, an Apache Spark DataSource V2 connector that reads

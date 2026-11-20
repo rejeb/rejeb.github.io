@@ -13,6 +13,7 @@ description: >-
   price settings.
 nav_order: 10
 permalink: /dataform-plugin/features/bigquery-cost
+last_modified_at: 2026-11-20
 ---
 
 The plugin tells you what a query will cost before you run it, and what it cost once it ran.

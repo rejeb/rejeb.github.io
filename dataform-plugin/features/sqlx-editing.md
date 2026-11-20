@@ -12,6 +12,7 @@ description: >-
   Documentation and template expressions folded to their value.
 nav_order: 2
 permalink: /dataform-plugin/features/sqlx-editing
+last_modified_at: 2026-11-08
 ---
 
 The plugin understands the three parts of a SQLX file: the `config { }` block, `js { }` blocks and the

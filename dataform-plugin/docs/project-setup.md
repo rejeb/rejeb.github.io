@@ -8,6 +8,7 @@ description: >-
   generated files, package installation and opening an existing Dataform repository.
 nav_order: 3
 permalink: /dataform-plugin/docs/project-setup
+last_modified_at: 2026-11-08
 ---
 
 Set up Node.js and the Dataform CLI first, as described in

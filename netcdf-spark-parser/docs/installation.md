@@ -6,6 +6,7 @@ heading: Installation
 description: Installation documentation for NetCDF Spark Parser.
 nav_order: 2
 permalink: /netcdf-spark-parser/docs/installation
+last_modified_at: 2026-10-18
 ---
 
 ## Requirements

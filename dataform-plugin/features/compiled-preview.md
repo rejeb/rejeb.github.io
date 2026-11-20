@@ -12,6 +12,7 @@ description: >-
   estimated cost, resolved schemas and lineage next to each SQLX file.
 nav_order: 3
 permalink: /dataform-plugin/features/compiled-preview
+last_modified_at: 2026-11-20
 ---
 
 Each SQLX file opens in a split editor: your source on the left, and a preview of what Dataform

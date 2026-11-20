@@ -8,6 +8,7 @@ description: >-
   Cloud sign-in, Dataform repositories and service accounts.
 nav_order: 4
 permalink: /dataform-plugin/docs/configuration
+last_modified_at: 2026-11-08
 ---
 
 Configuration happens in two places:

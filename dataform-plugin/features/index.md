@@ -10,6 +10,7 @@ description: >-
   and formatting.
 nav_order: 1
 permalink: /dataform-plugin/features
+last_modified_at: 2026-11-08
 ---
 
 The plugin brings the whole Dataform workflow into IntelliJ IDEA: writing SQLX with completion and

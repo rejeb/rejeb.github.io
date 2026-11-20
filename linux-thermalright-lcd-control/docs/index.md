@@ -8,6 +8,7 @@ description: >-
   troubleshooting and adding support for a new device.
 nav_order: 1
 permalink: /linux-thermalright-lcd-control/docs
+last_modified_at: 2026-10-18
 ---
 
 **Thermalright LCD Control** is a Linux desktop application that drives the LCD screens and digital RGB LEDs of

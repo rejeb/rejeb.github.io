@@ -8,6 +8,7 @@ description: >-
   device_<id>.yaml device files and the config_<id>.yaml theme files.
 nav_order: 3
 permalink: /linux-thermalright-lcd-control/docs/configuration
+last_modified_at: 2026-10-18
 ---
 
 Everything can be configured from the GUI, and the GUI saves each change for you. This chapter describes what is

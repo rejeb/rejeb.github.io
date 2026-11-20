@@ -8,6 +8,7 @@ description: >-
   or any Linux distribution from the tarball.
 nav_order: 2
 permalink: /linux-thermalright-lcd-control/docs/installation
+last_modified_at: 2026-10-24
 ---
 
 The application bundles its own Python runtime and every dependency, so installing needs **no network access** and

@@ -8,6 +8,7 @@ description: >-
   Node.js, the Dataform CLI, Google Cloud sign-in and Dataform repositories.
 nav_order: 1
 permalink: /dataform-plugin/docs
+last_modified_at: 2026-11-08
 ---
 
 **Google Cloud Dataform Plugin for IntelliJ** is an IntelliJ IDEA plugin for writing, navigating, running and

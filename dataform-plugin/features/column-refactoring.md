@@ -12,6 +12,7 @@ description: >-
   pipeline-wide rename, impact analysis on save and renaming downstream usages.
 nav_order: 5
 permalink: /dataform-plugin/features/column-refactoring
+last_modified_at: 2026-11-08
 ---
 
 The plugin follows each column from the action that declares it to every action that reads it,

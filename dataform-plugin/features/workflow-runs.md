@@ -12,6 +12,7 @@ description: >-
   Dataform Workflow run configuration and the run console.
 nav_order: 8
 permalink: /dataform-plugin/features/workflow-runs
+last_modified_at: 2026-11-08
 ---
 
 The plugin starts Dataform workflow invocations in Google Cloud from your local files, and shows

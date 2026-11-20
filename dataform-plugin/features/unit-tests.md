@@ -12,6 +12,7 @@ description: >-
   the Test preview and running tests with the IDE test runner.
 nav_order: 11
 permalink: /dataform-plugin/features/unit-tests
+last_modified_at: 2026-11-08
 ---
 
 Dataform unit tests check the output of a table or view against fixed input data. The plugin creates

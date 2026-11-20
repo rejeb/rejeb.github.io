@@ -11,6 +11,7 @@ description: >-
   integration.
 nav_order: 12
 permalink: /dataform-plugin/features/formatting
+last_modified_at: 2026-11-08
 ---
 
 **Code ▸ Reformat Code** (`Ctrl+Alt+L`) formats SQLX files.

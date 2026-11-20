@@ -6,6 +6,7 @@ heading: Installation
 description: Installation documentation for Google Cloud Dataform Plugin for IntelliJ.
 nav_order: 2
 permalink: /dataform-plugin/docs/installation
+last_modified_at: 2026-11-08
 ---
 
 ## Requirements

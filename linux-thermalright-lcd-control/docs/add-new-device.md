@@ -8,6 +8,7 @@ description: >-
   YAML file with the generic driver, or reverse-engineer its USB protocol and write a native device class.
 nav_order: 6
 permalink: /linux-thermalright-lcd-control/docs/add-new-device
+last_modified_at: 2026-10-26
 ---
 
 There are two ways to add support for a new device:

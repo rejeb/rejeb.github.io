@@ -7,6 +7,7 @@ description: >-
   credentials in the IDE password store, which services receive which data, retention and deletion.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/privacy-policy
+last_modified_at: 2026-11-20
 ---
 
 *Effective date: November 14, 2026*

@@ -12,6 +12,7 @@ description: >-
   IntelliJ, with paged results and job statistics.
 nav_order: 9
 permalink: /dataform-plugin/features/query-execution
+last_modified_at: 2026-11-08
 ---
 
 You can run the compiled query of an action in BigQuery without leaving the editor, to check what a

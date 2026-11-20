@@ -8,6 +8,7 @@ description: >-
   widget editor, rotation, saving themes and the RGB LED control panel.
 nav_order: 4
 permalink: /linux-thermalright-lcd-control/docs/usage
+last_modified_at: 2026-10-18
 ---
 
 ## Launch the application

@@ -12,6 +12,7 @@ description: >-
   inline, quick fixes, and the Dataform build in the Build tool window.
 nav_order: 4
 permalink: /dataform-plugin/features/errors-and-build
+last_modified_at: 2026-11-08
 ---
 
 The plugin compiles the project in the background, when you stop typing, when you save and after

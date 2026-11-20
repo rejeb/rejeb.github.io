@@ -12,6 +12,7 @@ description: >-
   column search, Knowledge Catalog lineage with runs, trace and differences, filters and focus.
 nav_order: 6
 permalink: /dataform-plugin/features/lineage
+last_modified_at: 2026-11-20
 ---
 
 The plugin draws the lineage of your Dataform actions from two sources:

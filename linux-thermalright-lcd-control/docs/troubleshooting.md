@@ -8,6 +8,7 @@ description: >-
   blurry or scrambled image, missing metrics, and where to find the logs.
 nav_order: 5
 permalink: /linux-thermalright-lcd-control/docs/troubleshooting
+last_modified_at: 2026-10-24
 ---
 
 ## Logs

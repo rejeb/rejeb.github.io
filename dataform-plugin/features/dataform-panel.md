@@ -12,6 +12,7 @@ description: >-
   files, pull, push, commits and comparing files with their local version.
 nav_order: 7
 permalink: /dataform-plugin/features/dataform-panel
+last_modified_at: 2026-11-08
 ---
 
 The **Dataform Tools** tool window, on the right side of the IDE, connects the local project to a

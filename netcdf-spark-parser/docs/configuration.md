@@ -6,6 +6,7 @@ heading: Configuration
 description: Configuration documentation for NetCDF Spark Parser.
 nav_order: 3
 permalink: /netcdf-spark-parser/docs/configuration
+last_modified_at: 2026-10-18
 ---
 
 > This chapter is being written. Until it is ready, see the [README](https://github.com/rejeb/netcdf-spark-parser#readme) on GitHub.

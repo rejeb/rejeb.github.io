@@ -7,6 +7,7 @@ description: >-
   Dataform licensed under Apache 2.0.
 image: /assets/img/og/og-dataform-plugin.png
 permalink: /dataform-plugin/terms-of-service
+last_modified_at: 2026-10-25
 ---
 
 *Effective date: October 17, 2026*
